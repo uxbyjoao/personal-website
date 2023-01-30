@@ -1,0 +1,14 @@
+---
+import { ISocialMedia } from "@types";
+import { Icon } from "astro-icon";
+
+const { name, icon, url } = Astro.props as ISocialMedia;
+---
+
+<a aria-label={name} href={url} target="_blank">
+  <Icon
+    class="text-grey fill-grey hover:text-blue-500 dark:text-white dark:fill-white dark:hover:text-blue-500 transition-colors"
+    name={icon}
+    size={32}
+  />
+</a>
