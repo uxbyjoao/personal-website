@@ -11,6 +11,7 @@ export const info = {
       location: "London, England (Remote)",
       startDate: "Apr 2022",
       endDate: "Present",
+      key: true,
       description: [
         "Researching, designing, prototyping, testing and delivering digital experiences for web and mobile.",
         "Designing for IoT, inventory management systems and e-commerce experiences — both B2C and B2B2C.",
@@ -34,6 +35,7 @@ export const info = {
       location: "Berlin, Germany (Hybrid)",
       startDate: "Jan 2022",
       endDate: "Apr 2022",
+      key: false,
       description: [
         "Contributed for foundational development of custom end-to-end design system.",
       ],
@@ -54,6 +56,7 @@ export const info = {
       location: "Berlin, Germany (Hybrid)",
       startDate: "Sep 2021",
       endDate: "Dec 2021",
+      key: true,
       description: [
         "Delivered UI design for Contentful's marketing website, with hundreds of thousands of accesses worldwide daily.",
         "Contributed to Contentful's marketing website's design system.",
@@ -76,6 +79,7 @@ export const info = {
       location: "Berlin, Germany (Hybrid)",
       startDate: "Aug 2021",
       endDate: "Sep 2021",
+      key: false,
       description: [
         "Delivered foundational research, including heuristics evaluation, user journey mapping, among others.",
         "Contributed for foundational development of custom end-to-end design system.",
@@ -97,6 +101,7 @@ export const info = {
       location: "Calgary, Alberta, Canada (Remote)",
       startDate: "Sep 2019",
       endDate: "Aug 2021",
+      key: true,
       description: [
         "Performed research, design, prototyping and testing for web and mobile experiences in the energy trading sector.",
         "Designed a complex trading application used by 350 companies and 2500 users worldwide on a daily basis.",
@@ -126,6 +131,7 @@ export const info = {
       location: "Fortaleza, Brazil",
       startDate: "2014",
       endDate: "Sep 2019",
+      key: false,
       description: [
         "Brand, print, web and app design for myriad local clients.",
         "Designed and developed responsive static websites.",
@@ -148,6 +154,7 @@ export const info = {
       location: "Fortaleza, Brazil",
       startDate: "2012",
       endDate: "2014",
+      key: false,
       description: [
         "Performed creative direction and design for award-winning digital advertising campaigns.",
         "Designed for responsive web and native apps.",
@@ -166,6 +173,7 @@ export const info = {
       location: "Fortaleza, Brazil",
       startDate: "2012",
       endDate: "2012",
+      key: false,
       description: [
         "Designed advertising campaigns for print & web media.",
         "Designed websites for clients, working closely with developers.",
@@ -196,6 +204,7 @@ export const info = {
       location: "Fortaleza, Brazil (Contract)",
       startDate: "2008",
       endDate: "2008",
+      key: false,
       description: [
         "Worked as a designer for local politician Patricia Saboya's bid for mayor.",
         "Designed & developed websites, ads for TV & print.",
@@ -208,6 +217,7 @@ export const info = {
       location: "Fortaleza, Brazil",
       startDate: "2007",
       endDate: "2008",
+      key: false,
       description: ["Designed ad campaigns for print & web media."],
       skills: ["Adobe Creative Suite"],
     },

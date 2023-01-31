@@ -4,15 +4,9 @@ import { info } from "@data";
 import Layout from "@layouts/Layout.astro";
 import Hero from "@components/home/Hero.astro";
 import Experience from "@components/home/Experience.astro";
-import Education from "@components/home/Education.astro";
-// import ProjectsWrapper from "@components/shell/ProjectsWrapper.astro";
 import MetaHead from "@components/shell/MetaHead.astro";
 
-// const featureProjects = info.projects.map((project, index) => {
-//   if (project.isFeatured && index < 6) {
-//     return project;
-//   }
-// });
+const keyXp = info.experience.filter((item) => item.key);
 ---
 
 <!DOCTYPE html>
@@ -23,17 +17,22 @@ import MetaHead from "@components/shell/MetaHead.astro";
       description={info.about}
       ogImageUrl={"/assets/images/profile.png"}
     />
+    <script
+      data-no-cookie
+      data-respect-dnt
+      async
+      src="https://cdn.splitbee.io/sb.js"
+    ></script>
   </head>
 
   <body>
     <Layout>
       <Hero name={info.name} about={info.about} />
-      <Experience title={"EXPERIENCE"} details={info.experience} />
-      <Education title={"EDUCATION"} details={info.education} />
-      <!-- <section>
-        <h2 class="w-[15rem] dark:text-light mt-16">FEATURE PROJECTS</h2>
-        <ProjectsWrapper projects={featureProjects} />
-      </section> -->
+      <Experience
+        title={"Key Experience"}
+        details={keyXp}
+        keyExperiences={true}
+      />
     </Layout>
   </body>
 </html>

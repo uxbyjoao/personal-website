@@ -1,0 +1,28 @@
+---
+import { info } from "@data";
+
+import Layout from "@layouts/Layout.astro";
+import Experience from "@components/home/Experience.astro";
+import Education from "@components/home/Education.astro";
+import MetaHead from "@components/shell/MetaHead.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <MetaHead
+      title={"Experience"}
+      description={info.about}
+      ogImageUrl={"/assets/images/profile.png"}
+    />
+    <script async src="https://cdn.splitbee.io/sb.js"></script>
+  </head>
+
+  <body>
+    <Layout>
+      <h1 style="line-height: 1.2;" class="mb-20">Experience</h1>
+      <Experience title={"Experience"} details={info.experience} />
+      <Education title={"Education"} details={info.education} />
+    </Layout>
+  </body>
+</html>

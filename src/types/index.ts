@@ -17,11 +17,13 @@ export interface IExperience {
   endDate: string;
   description: string[];
   skills: string[];
+  key: boolean;
 }
 
 export interface IExperiences {
   title: string;
   details: IExperience[];
+  keyExperiences: boolean;
 }
 
 export interface IEducation {

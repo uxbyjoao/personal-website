@@ -1,35 +1,65 @@
 ---
 import { info } from "@data";
 import { createLogo } from "@utils";
+
+import { Icon } from "astro-icon";
+
+const behanceUrl = info.socialMedia.filter(
+  (social) => social.name === "Behance"
+)[0].url;
 ---
 
 <header
-  class="container flex items-center justify-between h-[80px] sm:h-[123px]"
+  class="fixed w-full backdrop-blur-lg bg-light/60 dark:bg-dark/50 border-b border-b-neutral-100 dark:border-b-neutral-800 z-50"
 >
-  <a
-    class="text-2xl dark:text-light font-semibold dark:font-semibold font-outfit"
-    href="/"
-    >{createLogo(info.name)}.
-  </a>
-  <nav>
-    <ul class="flex items-center">
-      <!-- <li>
-        <a class="p-4 dark:text-light block text-lg" href="/projects"
-          >Projects</a
-        >
-      </li> -->
-      <!-- <li>
-        <a class="p-4 dark:text-light block text-lg" href="/contact">Contact</a>
-      </li> -->
-      <li>
-        <button
-          aria-label="theme-button"
-          id="theme-button"
-          class="dark:text-light rounded-lg p-4 ml-2 bg-slate-100 dark:bg-[#202020]"
-        ></button>
-      </li>
-    </ul>
-  </nav>
+  <div class="container flex items-center justify-between h-[80px]">
+    <a
+      class="text-2xl dark:text-light font-semibold dark:font-semibold font-outfit"
+      href="/"
+      >{createLogo(info.name)}.
+    </a>
+    <nav>
+      <ul class="flex items-center gap-3">
+        <!-- <li>
+          <a
+            class="text-dark hover:text-blue-500 transition-colors text-sm px-2 py-2 rounded font-medium"
+            href="#"
+            rel="prefetch">Projects</a
+          >
+        </li> -->
+        <li>
+          <a
+            class="text-dark dark:text-light hover:text-blue-500 dark:hover:text-blue-500 transition-colors text-sm px-2 py-2 rounded font-medium inline-flex items-center gap-1"
+            href={behanceUrl}
+            rel="prefetch"
+            target="_blank"
+            >Portfolio <Icon name="tabler:external-link" size={16} /></a
+          >
+        </li>
+        <li>
+          <a
+            class="text-dark dark:text-light hover:text-blue-500 dark:hover:text-blue-500 transition-colors text-sm px-2 py-2 rounded font-medium"
+            href="/experience"
+            rel="prefetch">Experience</a
+          >
+        </li>
+        <!-- <li>
+          <a
+            class="text-white text-sm px-2 py-2 bg-blue-500 hover:bg-blue-400 rounded border border-blue-500 hover:border-blue-400 transition-colors font-medium"
+            href="/contact"
+            rel="prefetch">Contact me</a
+          >
+        </li> -->
+        <li>
+          <button
+            aria-label="theme-button"
+            id="theme-button"
+            class="dark:text-light rounded-lg p-2 bg-neutral-50 dark:bg-[#202020] border border-neutral-200 dark:border-[#303030]"
+          ></button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
 <script is:inline>
