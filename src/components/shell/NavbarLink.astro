@@ -1,0 +1,27 @@
+---
+import { Icon } from "astro-icon";
+
+interface Props {
+  href: string;
+  newWindow?: boolean;
+}
+
+const { href, newWindow } = Astro.props;
+---
+
+<a
+  role="menuitem"
+  class:list={[
+    "hover:text-blue-500 dark:hover:text-blue-500 transition-colors text-sm px-2 py-2 rounded-md font-medium inline-flex items-center gap-1",
+    {
+      "bg-blue-500/10 text-blue-500": Astro.url.pathname === href,
+    },
+    {
+      "text-stone-700 dark:text-stone-50": Astro.url.pathname !== href,
+    },
+  ]}
+  href={href}
+  rel="prefetch"
+  target={newWindow ? "_blank" : "_self"}
+  ><slot /> {newWindow && <Icon name="tabler:external-link" size={16} />}</a
+>

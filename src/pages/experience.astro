@@ -1,27 +1,14 @@
 ---
 import { info } from "@data";
 
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import Experience from "@components/home/Experience.astro";
 import Education from "@components/home/Education.astro";
-import MetaHead from "@components/shell/MetaHead.astro";
+
+const title = "Experience";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <MetaHead
-      title={"Experience"}
-      description={info.about}
-      ogImageUrl={"/assets/images/profile.png"}
-    />
-  </head>
-
-  <body>
-    <Layout>
-      <h1 style="line-height: 1.2;" class="mb-20">Experience</h1>
-      <Experience title={"Experience"} details={info.experience} />
-      <Education title={"Education"} details={info.education} />
-    </Layout>
-  </body>
-</html>
+<BaseLayout title={title} heading={title}>
+  <Experience />
+  <Education />
+</BaseLayout>

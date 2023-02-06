@@ -1,37 +1,29 @@
 ---
-import { IEducations } from "@types";
-import SkillsList from "./SkillsList.astro";
+import { education } from "@data";
 
-const { title, details } = Astro.props as IEducations;
+import ListSection from "./ListSection.astro";
 ---
 
-<section
-  class="flex items-start justify-between flex-col sm:flex-row dark:text-light mt-20"
->
-  <h2 class="w-[15rem] sticky top-[120px]">{title}</h2>
-  <div class="w-full flex flex-col gap-8">
-    {
-      details.map((item, index, items) => (
-        <div>
-          <div class="flex justify-between items-center flex-wrap">
-            <div class="flex gap-2">
-              <h3 class="text-xl font-semibold">{item.institution}</h3>
-            </div>
-            <p class="text-sm dark:text-gray">{item.endDate}</p>
+<ListSection heading="Education">
+  {
+    education.map((item, index, items) => (
+      <div>
+        <div class="flex justify-between items-center flex-wrap">
+          <div class="flex gap-2">
+            <h3 class="text-xl">{item.institution}</h3>
           </div>
-          <p class="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
-            {item.location}
-          </p>
-          <ul class="my-7 list-disc list-inside flex flex-col gap-2">
-            {item.description.map((item) => (
-              <li class="dark:text-gray">{item}</li>
-            ))}
-          </ul>
-          {index !== items.length - 1 && (
-            <hr class="mt-10 bg-white opacity-10" />
-          )}
+          <p class="text-sm dark:text-gray">{item.endDate}</p>
         </div>
-      ))
-    }
-  </div>
-</section>
+        <p class="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
+          {item.location}
+        </p>
+        <ul class="my-7 list-disc list-inside flex flex-col gap-2">
+          {item.description.map((item) => (
+            <li class="dark:text-gray">{item}</li>
+          ))}
+        </ul>
+        {index !== items.length - 1 && <hr class="mt-10 opacity-10" />}
+      </div>
+    ))
+  }
+</ListSection>

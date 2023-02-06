@@ -9,13 +9,14 @@
     "resolveJsonModule": true,
     // Enable stricter transpilation for better output.
     "isolatedModules": true,
+    "strictNullChecks": true,
     // Astro will directly run your TypeScript code, no transpilation needed.
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"],
-      "@data": ["src/data/info"],
+      "@data": ["src/data/data"],
       "@utils": ["src/utils"],
       "@types": ["src/types"]
     }

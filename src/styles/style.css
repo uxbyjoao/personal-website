@@ -1,38 +1,41 @@
-/* ========== import font source ========== */
 @import "fonts.css";
-
-/* ========== import custom styles ========== */
-@import "custom-styles.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ========== tailwind custom styles ========== */
 @layer components {
   body {
-    @apply bg-light dark:bg-dark;
+    @apply bg-stone-50 dark:bg-stone-900;
   }
   .container {
-    @apply max-w-[1112px] mx-auto px-4;
+    @apply max-w-[768px] mx-auto px-4;
   }
+  p,
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
-    @apply font-outfit;
-  }
-  h1 {
-    @apply text-6xl sm:text-8xl main-heading;
-  }
-  h2 {
-    @apply text-xl font-semibold;
-  }
-  p,
   li,
   a {
-    @apply font-inter text-dark-gray;
+    @apply font-inter;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    @apply text-stone-900 dark:text-stone-50;
+  }
+
+  p,
+  li {
+    @apply text-stone-700 dark:text-stone-300;
+  }
+
+  .underlined-link {
+    @apply underline decoration-stone-900/10 hover:decoration-blue-500 dark:decoration-stone-50/20 dark:hover:decoration-blue-500 underline-offset-2 transition-colors duration-200;
   }
 }

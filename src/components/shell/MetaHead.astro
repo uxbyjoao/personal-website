@@ -1,8 +1,13 @@
 ---
-import { IMetaHead } from "@types";
-import { info } from "@data";
+interface Props {
+  title?: string;
+  description?: string;
+  ogImageUrl?: string;
+}
 
-const { title, description, ogImageUrl } = Astro.props as IMetaHead;
+const { title, description, ogImageUrl } = Astro.props;
+
+const BASE_URL = "https://uxbyjoao.me/";
 ---
 
 <meta charset="UTF-8" />
@@ -22,27 +27,23 @@ const { title, description, ogImageUrl } = Astro.props as IMetaHead;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Primary Meta Tags -->
-{
-  title && (
-    <link rel="canonical" href={`${info.baseUrl}${Astro.url.pathname}`} />
-  )
-}
-{title && <title>{`${title} - ${info.name}`}</title>}
-{title && <meta name="title" content={`${title} - ${info.name}`} />}
+{title && <link rel="canonical" href={`${BASE_URL}${Astro.url.pathname}`} />}
+{title && <title>{`${title} | João Gomes`}</title>}
+{title && <meta name="title" content={`${title} | João Gomes`} />}
 {description && <meta name="description" content={description} />}
 
 <!-- Open Graph / Facebook -->
 {title && <meta property="og:type" content="website" />}
 {
   title && (
-    <meta property="og:url" content={`${info.baseUrl}${Astro.url.pathname}`} />
+    <meta property="og:url" content={`${BASE_URL}${Astro.url.pathname}`} />
   )
 }
-{title && <meta property="og:title" content={`${title} - ${info.name}`} />}
+{title && <meta property="og:title" content={`${title} | João Gomes`} />}
 {description && <meta property="og:description" content={description} />}
 {
   ogImageUrl && (
-    <meta property="og:image" content={`${info.baseUrl}${ogImageUrl}`} />
+    <meta property="og:image" content={`${BASE_URL}${ogImageUrl}`} />
   )
 }
 
@@ -50,17 +51,14 @@ const { title, description, ogImageUrl } = Astro.props as IMetaHead;
 {title && <meta property="twitter:card" content="summary_large_image" />}
 {
   title && (
-    <meta
-      property="twitter:url"
-      content={`${info.baseUrl}${Astro.url.pathname}`}
-    />
+    <meta property="twitter:url" content={`${BASE_URL}${Astro.url.pathname}`} />
   )
 }
-{title && <meta property="twitter:title" content={`${title} - ${info.name}`} />}
+{title && <meta property="twitter:title" content={`${title} | João Gomes`} />}
 {description && <meta property="twitter:description" content={description} />}
 {
   ogImageUrl && (
-    <meta property="twitter:image" content={`${info.baseUrl}${ogImageUrl}`} />
+    <meta property="twitter:image" content={`${BASE_URL}${ogImageUrl}`} />
   )
 }
 
@@ -68,12 +66,6 @@ const { title, description, ogImageUrl } = Astro.props as IMetaHead;
 <link
   rel="preload"
   href="/assets/fonts/Inter/Inter-Light.ttf"
-  as="font"
-  crossorigin
-/>
-<link
-  rel="preload"
-  href="/assets/fonts/Outfit/Outfit-SemiBold.ttf"
   as="font"
   crossorigin
 />

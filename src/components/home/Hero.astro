@@ -1,19 +1,16 @@
 ---
-import { IHeroProps } from "@types";
-
-const { name, about } = Astro.props as IHeroProps;
 ---
 
-<section class="mb-20">
-  <h1>{name}</h1>
-  <p class="dark:text-light text-lg mb-6">
-    {about}
+<section class="mb-[100px]">
+  <h1 class="text-4xl font-semibold">Hello World, this is João.</h1>
+  <p class="text-lg mt-6">
+    My name is <strong>João Gomes</strong>, and I am a <strong
+      >Senior UX Designer</strong
+    >, <strong>Interaction Designer</strong>, <strong>Web Developer</strong> and
+    <strong>Musician</strong> based in Berlin, Germany. I have over 15 years of experience
+    as a digital designer, wearing many hats. I combine best industry practices in
+    user-centered design, interaction design, web and design systems development,
+    together with cutting-edge tools an technologies, to deliver world-class digital
+    experiences for businesses and their customers.
   </p>
-  <div class="mt-8 flex gap-3">
-    <!-- <a
-      href="#"
-      class="bg-blue-600 hover:bg-blue-500 transition-colors text-white px-4 py-3 rounded inline-flex gap-2 items-center"
-      >Contact me</a
-    > -->
-  </div>
 </section>

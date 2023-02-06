@@ -1,32 +1,10 @@
 ---
-import { info } from "@data";
-
-import Layout from "@layouts/Layout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/home/Hero.astro";
 import Experience from "@components/home/Experience.astro";
-import MetaHead from "@components/shell/MetaHead.astro";
-
-const keyXp = info.experience.filter((item) => item.key);
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <MetaHead
-      title={"Senior UX Designer in Berlin"}
-      description={info.about}
-      ogImageUrl={"/assets/images/profile.png"}
-    />
-  </head>
-
-  <body>
-    <Layout>
-      <Hero name={info.name} about={info.about} />
-      <Experience
-        title={"Key Experience"}
-        details={keyXp}
-        keyExperiences={true}
-      />
-    </Layout>
-  </body>
-</html>
+<BaseLayout>
+  <Hero />
+  <Experience keyOnly />
+</BaseLayout>

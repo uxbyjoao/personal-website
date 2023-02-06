@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection("blog");
+  return blogPosts.map((post) => {
+    return {
+      params: { path: post.slug },
+      props: { post },
+    };
+  });
+}
+
+const formatDate = (date: Date) => {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(date).toLocaleDateString("en-US", options);
+};
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title} description={post.data.lead} ogImageUrl={}>
+  <div class="max-w-[700px] m-auto">
+    <h1 class="text-4xl md:text-5xl md:px-6 font-medium">
+      {post.data.title}
+    </h1>
+    {
+      post.data.lead && (
+        <p class="mt-5 md:px-6 text-xl md:text-2xl">{post.data.lead}</p>
+      )
+    }
+    <div
+      class="flex mt-4 items-center gap-2 uppercase text-xs tracking-wider md:px-6"
+    >
+      <p>
+        Published on <strong>{formatDate(post.data.datePublished)}</strong>
+      </p>
+      <span>∕</span>
+      <p>
+        {Math.floor(post.body.split(" ").length / 200)} minutes read time
+      </p>
+    </div>
+    <div
+      class="prose dark:prose-invert prose-a:underlined-link mt-10 prose-img:rounded-md prose-headings:font-medium md:prose-headings:px-6 md:prose-p:px-6 prose-figcaption:text-center prose-figcaption:px-6 prose-figcaption:italic"
+    >
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

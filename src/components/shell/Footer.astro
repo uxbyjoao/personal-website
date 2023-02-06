@@ -1,13 +1,10 @@
 ---
-import { ISocialMedia } from "@types";
-import { info } from "@data";
+import { socialMedia } from "@data";
 
 import SocialMedia from "@components/shell/SocialMedia.astro";
 
 const date = new Date();
 const year = date.getFullYear();
-
-const socialMedia = info.socialMedia as ISocialMedia[];
 ---
 
 <footer
@@ -15,8 +12,8 @@ const socialMedia = info.socialMedia as ISocialMedia[];
 >
   <p class="dark:text-light text-sm text-center sm:text-right my-8">
     Copyright &copy; {year}
-    <strong>João Gomes</strong>, All Rights Reserved. <a
-      class="underline text-grey hover:text-blue-500 dark:text-white dark:hover:text-blue-500 transition-colors"
+    <strong>Jo&atilde;o Gomes</strong>, All Rights Reserved. <a
+      class="underlined-link"
       href="https://github.com/uzzii-21/astro-portfolio"
       >Base Astro theme by Uzair Ahmed</a
     >.

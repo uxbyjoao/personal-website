@@ -1,0 +1,97 @@
+---
+title: "Adobe purchases Figma: on why we choose tools, and a love letter to design tokens"
+datePublished: "Sep 16 2022"
+draft: false
+lead: "A few thoughts and ramblings about the Adobe x Figma acquisition, standardization in software, and why design tokens are the future of interface design."
+tags:
+  - "design-systems"
+  - "figma"
+  - "design-tokens"
+  - "tokens-studio"
+---
+
+import BlogImage from "@components/shell/BlogImage.astro";
+import { Prism } from "@astrojs/prism";
+
+## Introduction
+
+The design world was taken by storm this afternoon when **Adobe** announced that they were acquiring **Figma**. People were panicking on Slack, Twitter, and the meme factory went on full blast. It was chaos, apocalypse, hecatomb, pineapple on pizza, dogs and cats living together. I have to say I got a good chuckle out of a few memes myself. But in the interest of adding a little bit of sanity to this conversation, I'd like to try and add my humble two cents, while reflecting on why we choose our tools. Hopefully I can convince you that, whatever happens to Figma from now on, it's going to be all right.
+
+<BlogImage
+  src={import("./images/_figma-fotoshop-meme.jpeg")}
+  alt="Adobe Photoshop's logo, but using Figma's logo and typography"
+  caption="I have to say, I got a good chuckle out of this one."
+/>
+
+Let me just start by saying that I have mixed feelings about this myself, and I was quite shocked when I read the news. I've been using Adobe software since I was literally a kid, and I watched as their products went from industry-leading to bloated messes. In my opinion, Adobe products became a victim of their own popularity and adoption, to a point where they don't have to worry about stability, optimization, or even usability improvements. Adobe also don't have a really good track record of doing a good job with their acquisitions — remember Macromedia?
+
+Design is a craft and, as craftspeople, we grow attached to our tools. So I think it's quite understandable for people to get a little anxious about the announcement, especially when it came so suddenly like it did. Part of the reason I decided to write this text is to reassure myself a little bit.
+
+## Why design tools become popular
+
+Let's move on. I'd like to invite you to reflect about why tools become popular. Of course, because they're easy to use, effective and efficient. I would say that part of what enables their ease of use, effectiveness and efficiency is the adoption and embracing of _standards_. Photoshop was king of interface design (anyone remember slicing layouts?) before Sketch came along and demolished them for that use case, because Sketch adopted modern — at the time — interface design _standards_ as first-class. It was simple and easy to use. It gave us great tools to create pixel-perfect designs. It adopted component-driven design. We were able to create responsive screens. As a webdesigner at the time, it was easier for developers to build stuff I created in Sketch because it mostly locked me into delivering results that could easily and precisely be replicated using CSS. I ditched Photoshop for interface design and never looked back.
+
+<BlogImage
+  src={import("./images/_ui-design-in-photoshop.jpeg")}
+  alt="Adobe Photoshop being used to design the interface of a mobile application."
+  caption="I don't miss designing interfaces in Photoshop one bit — but not long ago, it was the industry standard."
+/>
+
+For a while, everything was great with Sketch. But in the industry at large, the conversation around design _systems_ started to really go mainstream. Flexbox was getting major support from browsers, and it was changing the way designs were implemented on the web. The value of usability research and testing started to become clear to companies of all sizes and shapes, so you needed prototypes to test with — only static screens were no longer acceptable. You had to use InVision then, because Sketch didn't do prototypes. People basically started to expect more from Sketch, because the industry _standards_ were shifting.
+
+This is where Figma came along. Figma gave us the ability to have isolated component and pattern libraries that could be published to the entire organization and used in different files/projects, effectively giving us (at least visually) design systems with a single source of truth. Then they gave us Flexbox (in part) with Autolayout. They gave us component variants, and now component properties which closely emulate how actual coded components behave. All of this built with Web Assembly, which meant it ran natively on any modern browser regardless of the platform. Real-time collaboration and prototyping features were included and put front and center. That's not mentioning FigJam. Why would the industry not shift from Sketch to Figma? Our standards changed. Sketch didn't adopt the shifting standards — Figma did.
+
+<BlogImage
+  src={import("./images/_style-guide-in-figma.jpeg")}
+  alt="A style guide in Figma."
+  caption="Figma was the first one to give us proper component libraries at scale."
+/>
+
+## Standards are shifting
+
+Following that train of thought, when you take a step back and look at the conversations currently happening around interface design, it seems like the industry is slowly shifting its standards again. For a while now, some of us have been looking into ways to decouple as much as possible from these design tools. By the very nature of component-driven design/development, design systems and their technology ecosystems, and because of the sheer scale and complexity of any digital experience nowadays, it's becoming more and more advantageous for teams and companies to store design decisions outside design tools.
+
+The best evidence we have for this shift is the growing popularity of [design tokens](https://css-tricks.com/what-are-design-tokens/) as a standard, and the tools around them. Design tokens can store design information as simple as a color palette, or as complex as an application shell's template. As for tooling, [Style Dictionary](https://amzn.github.io/style-dictionary/#/), a token transformer tool developed by Amazon has, as of this writing, over 2.7k stars on GitHub. [Tokens Studio](https://tokens.studio) (formerly Figma Tokens) has a whopping 50k installs, and is actively being used by huge companies around the world every day. We now have platforms like [Specify](https://specifyapp.com) which are dedicated to consolidating, managing, versioning and distributing design tokens. There's even a [W3C](https://www.w3.org/community/design-tokens/) group where they're discussing a spec for design tokens for the web (which is implemented by Style Dictionary mentioned above, by the way.)
+
+But the good thing about design tokens is that, in essence, they're just plain data, that can potentially be stored in a simple JSON or YAML file. You don't have to use any of the tools mentioned above because design tokens are a data standard, not a specific tool or technology. Plain data is easy to throw around, version, transform, serve and consume. You can store data anywhere in any way, either very cheaply or, in many instances, for free.
+
+<figure>
+```json
+{
+  "colors": {
+    "$type": "color",
+    "accent": {
+      "base": {
+        "$value": "#F8C307",
+        "$description": "Primary color for our brand"
+      }
+    }
+  }
+}
+```
+<figcaption>Example of a color token using W3C's working spec.</figcaption>
+</figure>
+
+However, I would say the biggest implication is this: adopting design tokens means _you own your design decisions in an open format_ (as opposed to a file within Figma, or stored within a proprietary Figma file format) and that means they are tool-agnostic. This is very valuable for teams and companies, especially large ones. It means that, potentially, it doesn't matter what tool or technology or platform you're using to read from these tokens: your brand and your designs are consistent across the board, always. Design teams are able to easily version major changes in design decisions and have preview environments build the product's frontend automatically without a developer ever lifting a finger, with testing by Storybook to boot. Companies are able to quickly bootstrap new branded products by using headless design systems — [which some people are already starting to think about](https://www.figma.com/community/file/1138931380490286546).
+
+It really seems to me that design tokens will soon become a mainstream standard across the industry, because they are that valuable. My bet is that a day will come (hopefully sooner rather than later) when we will want nothing more from our design tool of choice than a way to consume this data, just like all we expect from our TVs nowadays is for them to have HDMI ports for us to plug in our actual content machines. Maybe other features will become more valuable, like highly complex prototyping or collaboration, and the actual pixel pushing will be an afterthought.
+
+<BlogImage
+  src={import("./images/_figma-tokens.png")}
+  alt="Figma Tokens, a plugin for Figma that allows you to export design tokens from your Figma file."
+  caption="Figma Tokens, now known as Tokens Studio, has been battle-tested and is used by many companies around the world."
+/>
+
+## Conclusion
+
+Now, I know that maybe this is wishful thinking on my part. I agree it's not realistic to assume that interface designers all over will suddenly also have to know how to push code to a GitHub repository, or know what the heck a YAML file is. I realize that the biggest appeal and value of a design tool like Figma is empowering people to being able to create high quality products quickly and cheaply, while also collaborating live. But people using Figma today didn't know how to use it the first time they fired it up. Maybe some came from Illustrator, or Photoshop, or Sketch, but for many people, Figma was the first design tool they ever used in their lives. All of them were able to eventually grasp concepts like Autolayout, resizing constrains, global color styles — it all became second nature to them. I don't think grasping what design tokens are and how to use them is such a big leap from that — if the tool supports them well enough, in an easy-to-use and intuitive manner.
+
+My main point is that, if something becomes valuable enough to evolve into an industry standard, tools have to either incorporate it or face their deaths. In that sense, it doesn't really matter who owns Figma, or even if Figma lives or dies. Ultimately, we will pick the tools that support us, our standards and our ways of working. Right now, it's Figma. Tomorrow, it could be something else. We've seen it happen time and time again, and I don't think Figma is immune to that.
+
+For now, I'll keep using Figma as I have for the last few years. It is still the best tool for interface design out there in my opinion, and being acquired by Adobe doesn't change that. I think we can rest assured that, at least for the medium term, Figma will remain being awesome. But I will, as I always have, keep my eyes open for what's new out there, and I recommend you do the same. This is how I found out about Sketch, Figma, and so many other amazing tools.
+
+And hey, who knows? Maybe Adobe will leave Figma to their own devices (not before integrating it with Adobe Cloud shenanigans, that is) and Figma will be able to tap into Adobe's vast pool of resources to keep trucking as usual and being awesome. I'm skeptical, though. We'll see.
+
+In conclusion, I do congratulate everyone at Figma for the milestone. It is, after all, quite an accomplishment. I've been using Figma from very early in their development and it's been amazing to witness their growth. I wish everyone at Figma success in their new chapter, and thank them for everything they've done for the community so far. Here's to hoping that this changes nothing, and Figma remains awesome as it's always been.
+
+Cheers and thanks for reading!

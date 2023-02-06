@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const blogPosts = await getCollection("blog");
+
+/**
+ * Format a date to a human readable format
+ * @param {Date} date - The date to format
+ */
+const formatDate = (date: Date) => {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(date).toLocaleDateString("en-US", options);
+};
+
+const description = "João's blog about design, technology, music and life.";
+---
+
+<BaseLayout description={description} heading="Blog">
+  <ul class="mt-10">
+    {
+      blogPosts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            <h2 class="text-2xl font-medium underlined-link">
+              {post.data.title}
+            </h2>
+          </a>
+          <p class="mt-4 items-center gap-2 uppercase text-xs tracking-wider">
+            {formatDate(post.data.datePublished)}
+          </p>
+          <p class="mt-3">{post.data.lead}</p>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>

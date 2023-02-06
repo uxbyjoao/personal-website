@@ -1,58 +1,53 @@
 ---
-import { IExperiences } from "@types";
-import SkillsList from "./SkillsList.astro";
-import { Icon } from "astro-icon";
+import { experience } from "@data";
 
-const { title, details, keyExperiences } = Astro.props as IExperiences;
+import ButtonLink from "@components/ButtonLink.astro";
+import ListSection from "@components/home/ListSection.astro";
+import SkillsList from "@components/home/SkillsList.astro";
+interface Props {
+  keyOnly?: boolean;
+}
+
+const { keyOnly } = Astro.props;
+
+const list = experience.filter((item) => (keyOnly ? item.key : true));
 ---
 
-<section
-  class="flex items-start justify-between flex-col sm:flex-row dark:text-light"
->
-  <h2 class="w-[15rem] mb-4 sticky top-[120px]">{title}</h2>
-  <div class="w-full flex flex-col gap-8">
-    {
-      details.map((item, index, items) => (
-        <div>
-          <div class="flex justify-between items-center flex-wrap">
-            <div class="flex gap-2">
-              <h3 class="text-xl font-semibold">
-                {item.title}{" "}
-                <span class="text-xl font-light opacity-50">—</span>{" "}
-                {item.company}
-              </h3>
-            </div>
-            <p class="text-sm dark:text-gray">
-              {item.startDate} — {item.endDate}
-            </p>
+<ListSection heading={keyOnly ? "Key Experiences" : "Experience"}>
+  {
+    list.map((item, index, items) => (
+      <div>
+        <div class="flex flex-col md:flex-row justify-between items-baseline flex-wrap">
+          <div class="flex gap-2">
+            <h3 class="text-xl font-medium">
+              {item.title} <span class="text-xl font-light opacity-50">—</span>{" "}
+              {item.company}
+            </h3>
           </div>
-          <p class="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
-            {item.location}
+          <p class="text-sm dark:text-gray mt-1 md:m-0">
+            {item.startDate} — {item.endDate}
           </p>
-          <ul class="my-7 list-disc list-inside flex flex-col gap-2">
-            {item.description.map((item) => (
-              <li class="dark:text-gray">{item}</li>
-            ))}
-          </ul>
-          {item.skills && <SkillsList skills={item.skills} />}
-          {index !== items.length - 1 && (
-            <hr class="mt-10 bg-white opacity-10" />
-          )}
         </div>
-      ))
-    }
-    {
-      keyExperiences && (
-        <div>
-          <a
-            href="/experience"
-            class="text-blue-500 py-2 px-3 bg-blue-500/10 hover:bg-blue-500/20 rounded inline-flex gap-2 items-center transition-colors"
-          >
-            See full experience & education{" "}
-            <Icon name="tabler:arrow-right" size={20} />
-          </a>
-        </div>
-      )
-    }
-  </div>
-</section>
+        <p class="text-sm mt-1 text-neutral-500 dark:text-neutral-400">
+          {item.location}
+        </p>
+        <ul class="my-7 list-disc pl-4 flex flex-col gap-2">
+          {item.description.map((item) => (
+            <li class="dark:text-gray">{item}</li>
+          ))}
+        </ul>
+        {item.skills && <SkillsList skills={item.skills} />}
+        {index !== items.length - 1 && <hr class="mt-10 dark:opacity-10" />}
+      </div>
+    ))
+  }
+  {
+    keyOnly && (
+      <div>
+        <ButtonLink href="/experience" iconLeft="tabler:arrow-right">
+          See full experience & education
+        </ButtonLink>
+      </div>
+    )
+  }
+</ListSection>

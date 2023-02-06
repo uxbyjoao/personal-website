@@ -1,0 +1,18 @@
+---
+interface Props {
+  heading: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<section
+  class="flex items-start justify-between flex-col md:flex-row dark:text-light mb-[150px]"
+>
+  <h2 class="w-[15rem] mb-4 md:mb-0 md:sticky md:top-[120px] text-xl">
+    {heading}
+  </h2>
+  <div class="w-full flex flex-col gap-8">
+    <slot />
+  </div>
+</section>
