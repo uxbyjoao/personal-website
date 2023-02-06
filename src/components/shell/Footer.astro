@@ -8,16 +8,21 @@ const year = date.getFullYear();
 ---
 
 <footer
-  class="container flex flex-col sm:flex-row justify-between items-center mt-28 mb-8 sm:mb-4"
+  class="container flex flex-col sm:flex-row justify-between items-center py-20"
 >
-  <p class="dark:text-light text-sm text-center sm:text-right my-8">
-    Copyright &copy; {year}
-    <strong>Jo&atilde;o Gomes</strong>, All Rights Reserved. <a
-      class="underlined-link"
-      href="https://github.com/uzzii-21/astro-portfolio"
-      >Base Astro theme by Uzair Ahmed</a
-    >.
-  </p>
+  <div>
+    <p class="text-sm text-center sm:text-right">
+      Copyright &copy; {year}
+      <strong>Jo&atilde;o Gomes</strong>, All Rights Reserved.
+    </p>
+    <p class="text-sm">
+      <a
+        class="underlined-link"
+        href="https://github.com/uzzii-21/astro-portfolio"
+        >Base Astro theme by Uzair Ahmed</a
+      >.
+    </p>
+  </div>
   <ul class="flex gap-5">
     {
       socialMedia.map((social) => (
