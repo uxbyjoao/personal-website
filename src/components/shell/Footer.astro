@@ -11,11 +11,11 @@ const year = date.getFullYear();
   class="container flex flex-col sm:flex-row justify-between items-center py-20"
 >
   <div>
-    <p class="text-sm text-center sm:text-right">
+    <p class="text-sm text-center sm:text-left">
       Copyright &copy; {year}
       <strong>Jo&atilde;o Gomes</strong>, All Rights Reserved.
     </p>
-    <p class="text-sm">
+    <p class="text-sm text-center sm:text-left">
       <a
         class="underlined-link"
         href="https://github.com/uzzii-21/astro-portfolio"
@@ -23,7 +23,7 @@ const year = date.getFullYear();
       >.
     </p>
   </div>
-  <ul class="flex gap-5">
+  <ul class="flex gap-5 mt-8 sm:mt-0">
     {
       socialMedia.map((social) => (
         <li>
