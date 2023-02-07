@@ -10,11 +10,18 @@ import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astro-portfolio-uzair.vercel.app",
-  integrations: [tailwind(), sitemap({
-    changefreq: "weekly",
-    priority: 0.7,
-    lastmod: new Date(),
-    entryLimit: 10000
-  }), robotsTxt(), prefetch(), mdx(), image()]
+  site: "https://uxbyjoao.me",
+  integrations: [
+    tailwind(),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+      entryLimit: 10000,
+    }),
+    robotsTxt(),
+    prefetch(),
+    mdx(),
+    image(),
+  ],
 });
