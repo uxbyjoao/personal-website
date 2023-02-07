@@ -23,8 +23,12 @@ function handleNavOpen() {
   if (navOverlay !== null && navDrawer !== null) {
     document.body.style.overflow = "hidden";
 
-    navOverlay.classList.remove("hidden");
+    [navOverlay, navDrawer].forEach((el) => {
+      el.classList.remove("hidden");
+    });
+
     navOverlay.classList.add("block");
+    navDrawer.classList.add("flex");
 
     animating = true;
 
@@ -74,7 +78,12 @@ function handleNavClose() {
         document.body.style.overflow = "auto";
 
         navOverlay.classList.remove("block");
-        navOverlay.classList.add("hidden");
+        navDrawer.classList.remove("flex");
+
+        [navOverlay, navDrawer].forEach((el) => {
+          el.classList.add("hidden");
+        });
+
         navOpen = false;
         animating = false;
       },
