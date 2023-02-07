@@ -25,11 +25,6 @@ const {
 <html lang="en">
   <head>
     <MetaHead title={title} description={description} ogImageUrl={ogImageUrl} />
-    {
-      import.meta.env.MODE === "production" && (
-        <script src="../scripts/analytics.js" />
-      )
-    }
   </head>
   <body>
     <MobileNav />
@@ -45,5 +40,6 @@ const {
     </main>
     <Footer />
     <script src="../scripts/mobileNav.ts"></script>
+    <script src="../scripts/analytics.js"></script>
   </body>
 </html>
