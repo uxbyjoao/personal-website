@@ -7,6 +7,13 @@ interface Props {
 }
 
 const { href, newWindow } = Astro.props;
+
+function checkPathName(href: string) {
+  if (href === "/") {
+    return Astro.url.pathname === "/";
+  }
+  return Astro.url.pathname.includes(href);
+}
 ---
 
 <a
@@ -15,10 +22,10 @@ const { href, newWindow } = Astro.props;
   class:list={[
     "flex justify-between items-center p-3 rounded-md font-medium",
     {
-      "bg-blue-500/10 text-blue-500": Astro.url.pathname === href,
+      "bg-blue-500/10 text-blue-500": checkPathName(href),
     },
     {
-      "text-stone-700 dark:text-stone-50": Astro.url.pathname !== href,
+      "text-stone-700 dark:text-stone-50": !checkPathName(href),
     },
   ]}><slot />{newWindow && <Icon name="tabler:external-link" size={16} />}</a
 >

@@ -23,17 +23,17 @@ const { Content } = await post.render();
 ---
 
 <BaseLayout title={post.data.title} description={post.data.lead} ogImageUrl={}>
-  <div class="max-w-[700px] m-auto">
-    <h1 class="text-4xl md:text-5xl md:px-6 font-medium">
+  <div class="m-auto max-w-[700px]">
+    <h1 class="text-4xl font-medium md:px-6 md:text-5xl">
       {post.data.title}
     </h1>
     {
       post.data.lead && (
-        <p class="mt-5 md:px-6 text-xl md:text-2xl">{post.data.lead}</p>
+        <p class="mt-5 text-xl md:px-6 md:text-2xl">{post.data.lead}</p>
       )
     }
     <div
-      class="flex mt-4 items-center gap-2 uppercase text-xs tracking-wider md:px-6"
+      class="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider md:px-6"
     >
       <p>
         Published on <strong>{formatDate(post.data.datePublished)}</strong>
@@ -44,7 +44,7 @@ const { Content } = await post.render();
       </p>
     </div>
     <div
-      class="prose dark:prose-invert prose-a:underlined-link mt-10 prose-img:rounded-md prose-headings:font-medium md:prose-headings:px-6 md:prose-p:px-6 prose-figcaption:text-center prose-figcaption:px-6 prose-figcaption:italic"
+      class="prose-a:underlined-link prose mt-10 prose-headings:font-medium prose-figcaption:px-6 prose-figcaption:text-center prose-figcaption:italic prose-img:rounded-md dark:prose-invert md:prose-headings:px-6 md:prose-p:px-6"
     >
       <Content />
     </div>

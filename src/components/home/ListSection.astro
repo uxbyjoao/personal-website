@@ -7,12 +7,12 @@ const { heading } = Astro.props;
 ---
 
 <section
-  class="flex items-start justify-between flex-col md:flex-row dark:text-light mb-[150px]"
+  class="dark:text-light flex flex-col items-start justify-between md:flex-row"
 >
-  <h2 class="w-[15rem] mb-4 md:mb-0 md:sticky md:top-[120px] text-xl">
+  <h2 class="mb-4 w-[15rem] text-xl md:sticky md:top-[120px] md:mb-0">
     {heading}
   </h2>
-  <div class="w-full flex flex-col gap-8">
+  <div class="flex w-full flex-col gap-8">
     <slot />
   </div>
 </section>

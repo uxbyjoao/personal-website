@@ -8,16 +8,16 @@ import ListSection from "./ListSection.astro";
   {
     education.map((item, index, items) => (
       <div>
-        <div class="flex justify-between items-center flex-wrap">
+        <div class="flex flex-wrap items-center justify-between">
           <div class="flex gap-2">
             <h3 class="text-xl">{item.institution}</h3>
           </div>
-          <p class="text-sm dark:text-gray">{item.endDate}</p>
+          <p class="dark:text-gray text-sm">{item.endDate}</p>
         </div>
-        <p class="text-sm mt-2 text-neutral-500 dark:text-neutral-400">
+        <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
           {item.location}
         </p>
-        <ul class="my-7 list-disc list-inside flex flex-col gap-2">
+        <ul class="my-7 flex list-inside list-disc flex-col gap-2">
           {item.description.map((item) => (
             <li class="dark:text-gray">{item}</li>
           ))}
