@@ -19,12 +19,11 @@ export const prerender = true;
 The design world was taken by storm this afternoon when **Adobe** announced that they were acquiring **Figma**. People were panicking on Slack, Twitter, and the meme factory went on full blast. It was chaos, apocalypse, hecatomb, pineapple on pizza, dogs and cats living together. I have to say I got a good chuckle out of a few memes myself. But in the interest of adding a little bit of sanity to this conversation, I'd like to try and add my humble two cents, while reflecting on why we choose our tools. Hopefully I can convince you that, whatever happens to Figma from now on, it's going to be all right.
 
 <BlogImage
-  src="/assets/images/blog/2022/09/figma-fotoshop-meme.jpeg"
+  src={import("./images/_figma-fotoshop-meme.jpeg")}
   alt="Adobe Photoshop's logo, but using Figma's logo and typography"
   caption="I have to say, I got a good chuckle out of this one."
   width={1658}
   height={854}
-  format="jpeg"
 />
 
 Let me just start by saying that I have mixed feelings about this myself, and I was quite shocked when I read the news. I've been using Adobe software since I was literally a kid, and I watched as their products went from industry-leading to bloated messes. In my opinion, Adobe products became a victim of their own popularity and adoption, to a point where they don't have to worry about stability, optimization, or even usability improvements. Adobe also don't have a really good track record of doing a good job with their acquisitions — remember Macromedia?
@@ -36,12 +35,11 @@ Design is a craft and, as craftspeople, we grow attached to our tools. So I thin
 Let's move on. I'd like to invite you to reflect about why tools become popular. Of course, because they're easy to use, effective and efficient. I would say that part of what enables their ease of use, effectiveness and efficiency is the adoption and embracing of _standards_. Photoshop was king of interface design (anyone remember slicing layouts?) before Sketch came along and demolished them for that use case, because Sketch adopted modern — at the time — interface design _standards_ as first-class. It was simple and easy to use. It gave us great tools to create pixel-perfect designs. It adopted component-driven design. We were able to create responsive screens. As a webdesigner at the time, it was easier for developers to build stuff I created in Sketch because it mostly locked me into delivering results that could easily and precisely be replicated using CSS. I ditched Photoshop for interface design and never looked back.
 
 <BlogImage
-  src="/assets/images/blog/2022/09/ui-design-in-photoshop.jpeg"
+  src={import("./images/_ui-design-in-photoshop.jpeg")}
   alt="Adobe Photoshop being used to design the interface of a mobile application."
   caption="I don't miss designing interfaces in Photoshop one bit — but not long ago, it was the industry standard."
   width={1280}
   height={720}
-  format="jpeg"
 />
 
 For a while, everything was great with Sketch. But in the industry at large, the conversation around design _systems_ started to really go mainstream. Flexbox was getting major support from browsers, and it was changing the way designs were implemented on the web. The value of usability research and testing started to become clear to companies of all sizes and shapes, so you needed prototypes to test with — only static screens were no longer acceptable. You had to use InVision then, because Sketch didn't do prototypes. People basically started to expect more from Sketch, because the industry _standards_ were shifting.
@@ -49,12 +47,11 @@ For a while, everything was great with Sketch. But in the industry at large, the
 This is where Figma came along. Figma gave us the ability to have isolated component and pattern libraries that could be published to the entire organization and used in different files/projects, effectively giving us (at least visually) design systems with a single source of truth. Then they gave us Flexbox (in part) with Autolayout. They gave us component variants, and now component properties which closely emulate how actual coded components behave. All of this built with Web Assembly, which meant it ran natively on any modern browser regardless of the platform. Real-time collaboration and prototyping features were included and put front and center. That's not mentioning FigJam. Why would the industry not shift from Sketch to Figma? Our standards changed. Sketch didn't adopt the shifting standards — Figma did.
 
 <BlogImage
-  src="/assets/images/blog/2022/09/style-guide-in-figma.jpeg"
+  src={import("./images/_style-guide-in-figma.jpeg")}
   alt="A style guide in Figma."
   caption="Figma was the first one to give us proper component libraries at scale."
   width={1224}
   height={765}
-  format="jpeg"
 />
 
 ## Standards are shifting
@@ -87,12 +84,11 @@ However, I would say the biggest implication is this: adopting design tokens mea
 It really seems to me that design tokens will soon become a mainstream standard across the industry, because they are that valuable. My bet is that a day will come (hopefully sooner rather than later) when we will want nothing more from our design tool of choice than a way to consume this data, just like all we expect from our TVs nowadays is for them to have HDMI ports for us to plug in our actual content machines. Maybe other features will become more valuable, like highly complex prototyping or collaboration, and the actual pixel pushing will be an afterthought.
 
 <BlogImage
-  src="/assets/images/blog/2022/09/figma-tokens.png"
+  src={import("./images/_figma-tokens.png")}
   alt="Figma Tokens, a plugin for Figma that allows you to export design tokens from your Figma file."
   caption="Figma Tokens, now known as Tokens Studio, has been battle-tested and is used by many companies around the world."
   width={804}
   height={1000}
-  format="png"
 />
 
 ## Conclusion

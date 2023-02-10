@@ -4,15 +4,21 @@ import { Image } from "@astrojs/image/components";
 interface Props {
   src: string;
   alt: string;
+  caption?: string;
   width: number;
   height: number;
-  format: string;
-  caption?: string;
 }
 
-const { src, caption, alt, width, height, format } = Astro.props;
+const { src, caption, alt, width, height } = Astro.props;
 ---
 <figure>
-  <Image src={src} alt={alt} width={width} height={height} format={format} />
+  <Image
+    src={src}
+    sizes="(max-width: 800px) 100vw, 800px"
+    alt={alt}
+    background={"#000000"}
+    width={width}
+    height={height}
+  />
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
