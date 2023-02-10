@@ -24,7 +24,7 @@ export const prerender = true;
     {
       blogPosts.map((post) => (
         <li>
-          <a href={`/blog/${post.slug}`}>
+          <a href={`/blog/${post.slug}`} rel="prefetch">
             <h2 class="underlined-link text-2xl font-medium">
               {post.data.title}
             </h2>
