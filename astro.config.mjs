@@ -15,11 +15,18 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   site: "https://uxbyjoao.me",
   output: "server",
-  integrations: [tailwind(), sitemap({
-    changefreq: "weekly",
-    priority: 0.7,
-    lastmod: new Date(),
-    entryLimit: 10000
-  }), robotsTxt(), prefetch(), mdx(), image()],
-  adapter: vercel()
+  integrations: [
+    tailwind(),
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+      entryLimit: 10000,
+    }),
+    robotsTxt(),
+    prefetch(),
+    mdx(),
+    image(),
+  ],
+  adapter: vercel(),
 });
