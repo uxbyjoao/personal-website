@@ -20,3 +20,6 @@ pnpm-debug.log*
 
 # Astro-specific files
 .astro
+
+# Vercel-specific files
+.vercel
