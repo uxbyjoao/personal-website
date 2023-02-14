@@ -1,21 +1,24 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Image } from "@astrojs/image/components";
 
 interface Props {
   src: string;
   alt: string;
   caption?: string;
+  width: number;
+  height: number;
 }
 
-const { src, caption, alt } = Astro.props;
+const { src, caption, alt, width, height } = Astro.props;
 ---
-
 <figure>
-  <Picture
+  <Image
     src={src}
-    widths={[400, 800, 1000]}
     sizes="(max-width: 800px) 100vw, 800px"
     alt={alt}
+    background={"#000000"}
+    width={width}
+    height={height}
   />
   {caption && <figcaption>{caption}</figcaption>}
 </figure>

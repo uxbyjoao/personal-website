@@ -15,6 +15,8 @@ const formatDate = (date: Date) => {
 };
 
 const description = "João's blog about design, technology, music and life.";
+
+export const prerender = true;
 ---
 
 <BaseLayout title="Blog" description={description} heading="Blog">
@@ -22,7 +24,7 @@ const description = "João's blog about design, technology, music and life.";
     {
       blogPosts.map((post) => (
         <li>
-          <a href={`/blog/${post.slug}`}>
+          <a href={`/blog/${post.slug}`} rel="prefetch">
             <h2 class="underlined-link text-2xl font-medium">
               {post.data.title}
             </h2>

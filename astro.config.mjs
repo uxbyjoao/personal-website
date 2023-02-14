@@ -9,8 +9,12 @@ import mdx from "@astrojs/mdx";
 import image from "@astrojs/image";
 
 // https://astro.build/config
+import vercel from "@astrojs/vercel/serverless";
+
+// https://astro.build/config
 export default defineConfig({
   site: "https://uxbyjoao.me",
+  output: "server",
   integrations: [
     tailwind(),
     sitemap({
@@ -24,4 +28,5 @@ export default defineConfig({
     mdx(),
     image(),
   ],
+  adapter: vercel(),
 });
