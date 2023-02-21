@@ -2,7 +2,9 @@ import jwt from "jsonwebtoken";
 
 export async function post({ request }) {
   // const { password } = await request.json();
-  return new Response(JSON.stringify({ password }), { status: 200 });
+  return new Response(JSON.stringify({ message: "hello world" }), {
+    status: 200,
+  });
   // if (password === import.meta.env.CONTENT_PASSWORD) {
   //   jwt.sign(
   //     { loggedIn: true },
