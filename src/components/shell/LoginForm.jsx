@@ -22,7 +22,7 @@ export default function LoginForm() {
     onSubmit: async (values) => {
       try {
         const response = await axios.post(
-          "/login/do",
+          "/api/login",
           { password: values.password },
           { withCredentials: true }
         );
