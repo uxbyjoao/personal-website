@@ -1,19 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export async function post({ request }) {
-  if (request.headers.get("Content-Type") === "application/json") {
-    const body = await request.json();
-    const name = body.name;
-    return new Response(
-      JSON.stringify({
-        message: "Your name was: " + name,
-      }),
-      {
-        status: 200,
-      }
-    );
-  }
-  return new Response(null, { status: 400 });
+  return new Response(JSON.stringify({ hello: "world" }), { status: 200 });
   // const { password } = await request.json();
   // if (password === import.meta.env.CONTENT_PASSWORD) {
   //   jwt.sign(
