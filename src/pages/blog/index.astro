@@ -1,18 +1,10 @@
 ---
+import { formatDate } from "@utils";
 import { getCollection } from "astro:content";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 const blogPosts = await getCollection("blog");
-
-/**
- * Format a date to a human readable format
- * @param {Date} date - The date to format
- */
-const formatDate = (date: Date) => {
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  return new Date(date).toLocaleDateString("en-US", options);
-};
 
 const description = "João's blog about design, technology, music and life.";
 
