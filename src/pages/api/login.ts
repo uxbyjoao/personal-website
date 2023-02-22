@@ -18,22 +18,22 @@ export async function post({ request }) {
 
   // Password is correct
   if (password === import.meta.env.CONTENT_PASSWORD) {
-    // const token = jwt.sign(
-    //   { loggedIn: true },
-    //   import.meta.env.CONTENT_PRIVATE_KEY,
-    //   {
-    //     expiresIn: "24h",
-    //   }
-    // );
+    const token = jwt.sign(
+      { loggedIn: true },
+      import.meta.env.CONTENT_PRIVATE_KEY,
+      {
+        expiresIn: "24h",
+      }
+    );
     return new Response(
       JSON.stringify({
         message: "Login successful!",
-        password,
+        token,
       }),
       {
         status: 200,
         headers: {
-          "Set-Cookie": `auth_token=ABLUBLE; Path=/projects; HttpOnly`,
+          "Set-Cookie": `auth_token=${token}; Path=/projects; HttpOnly`,
         },
       }
     );
