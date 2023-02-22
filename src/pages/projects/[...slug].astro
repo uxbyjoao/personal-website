@@ -3,15 +3,20 @@ import { checkAuth } from "@utils";
 import { getEntryBySlug } from "astro:content";
 
 import BaseLayout from "@layouts/BaseLayout.astro";
+
 const { slug } = Astro.params;
-const project = await getEntryBySlug("projects", slug);
-const { Content } = await project.render();
-
 const cookie = Astro.cookies.get("auth_token").value;
+const project = await getEntryBySlug("projects", slug);
 
-if (!checkAuth(cookie)) {
-  return Astro.redirect(`/login?redirect=${slug}`);
+if (!cookie || !checkAuth(cookie)) {
+  return Astro.redirect(`/login?redirect=/projects/${slug}`);
 }
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await project.render();
 ---
 
 <BaseLayout>

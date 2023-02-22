@@ -1,0 +1,27 @@
+---
+import { checkAuth } from "@utils";
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const cookie = Astro.cookies.get("auth_token").value;
+const projects = await getCollection("projects");
+
+if (!cookie || !checkAuth(cookie)) {
+  return Astro.redirect(`/login?redirect=/projects`);
+}
+---
+
+<BaseLayout title="Projects" heading="Projects">
+  <div class="flex flex-col space-y-4">
+    {
+      projects.map((project) => (
+        <div class="flex flex-col space-y-4">
+          <h2 class="text-2xl font-bold">{project.data.title}</h2>
+          <p>{project.data.description}</p>
+          <a href={`/projects/${project.slug}`}>View Project</a>
+        </div>
+      ))
+    }
+  </div>
+</BaseLayout>

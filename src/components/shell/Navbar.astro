@@ -17,9 +17,10 @@ const behanceUrl = socialMedia.filter((social) => social.name === "Behance")[0]
     <a class="text-stone-800 dark:text-stone-50" href="/"><Logo /></a>
     <nav class="hidden items-center gap-3 md:flex" role="menubar">
       <NavbarLink href="/">Home</NavbarLink>
-      <NavbarLink href={behanceUrl} newWindow>Portfolio</NavbarLink>
+      <NavbarLink href="/projects">Projects</NavbarLink>
       <NavbarLink href="/experience">Experience</NavbarLink>
       <NavbarLink href="/blog">Blog</NavbarLink>
+      <NavbarLink href="/contact">Contact</NavbarLink>
       <button
         aria-label="Dark/Light Mode"
         id="theme-button"

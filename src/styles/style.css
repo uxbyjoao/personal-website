@@ -36,6 +36,6 @@
   }
 
   .underlined-link {
-    @apply underline decoration-stone-900/10 underline-offset-2 transition-colors duration-200 hover:decoration-blue-500 dark:decoration-stone-50/20 dark:hover:decoration-blue-500;
+    @apply underline decoration-stone-900/20 underline-offset-2 transition-colors duration-200 hover:decoration-blue-500 dark:decoration-stone-50/30 dark:hover:decoration-blue-500;
   }
 }

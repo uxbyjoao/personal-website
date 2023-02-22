@@ -14,6 +14,7 @@ const blogCollection = defineCollection({
 const projectsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
+    description: z.string(),
     datePublished: z.string().transform((date) => new Date(date)),
     private: z.boolean(),
     tags: z.array(z.string()).optional(),

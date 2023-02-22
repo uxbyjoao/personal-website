@@ -1,8 +1,26 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import LoginForm from "@components/shell/LoginForm";
+
+const reqURLstring = Astro.request.url;
+const reqURL = new URL(reqURLstring);
+const redirect = reqURL.searchParams.get("redirect");
+
+if (!redirect) {
+  return Astro.redirect("/");
+}
 ---
 
-<BaseLayout>
-  <LoginForm client:load />
+<BaseLayout title="Password needed">
+  <div class="m-auto flex min-h-[420px] max-w-[450px] flex-col gap-5">
+    <div class="flex flex-col gap-1 text-center">
+      <h1 class="text-2xl font-semibold">Sorry! Projects are restricted.</h1>
+      <p>Please enter the password to access projects.</p>
+    </div>
+    <LoginForm client:load />
+    <p class="text-center text-sm">
+      <a href="/contact" class="underlined-link">Contact me</a> and I will happily
+      send you the password.
+    </p>
+  </div>
 </BaseLayout>
