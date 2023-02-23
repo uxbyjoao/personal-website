@@ -99,7 +99,7 @@ export default function LoginForm() {
             "cursor-not-allowed bg-neutral-300 text-neutral-400 dark:bg-neutral-700 dark:text-neutral-800",
         ])}
       >
-        See project
+        Unlock projects
       </button>
       {response !== null && response.status === "error" && (
         <span className="text-sm font-medium text-red-500">

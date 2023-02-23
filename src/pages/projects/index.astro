@@ -19,16 +19,16 @@ if (!cookie || !checkAuth(cookie)) {
   <div class="flex flex-col gap-7">
     {
       featuredProjects.map((project) => (
-        <div class="flex  items-center gap-7">
-          <div class="h-[120px] w-[120px] shrink-0 rounded-lg bg-red-500 md:h-[200px] md:w-[200px]" />
+        <div class="flex flex-col items-center gap-7 sm:flex-row">
+          <div class="aspect-[4/3] w-full rounded-lg bg-red-500 sm:w-2/6 sm:shrink-0" />
           <div class="flex flex-col gap-3">
             <a
               href={`/projects/${project.slug}`}
-              class="underlined-link text-neutral-900 dark:text-neutral-100 sm:text-2xl"
+              class="underlined-link text-2xl text-neutral-900 dark:text-neutral-100"
             >
               {project.data.title}
             </a>
-            <p class="sm:text-lg">{project.data.excerpt}</p>
+            <p class="text-lg">{project.data.excerpt}</p>
             <div class="flex flex-wrap gap-2">
               {project.data.tags.map((tag) => (
                 <span class="rounded bg-blue-500/5 py-1 px-2 text-sm font-medium text-blue-500">
