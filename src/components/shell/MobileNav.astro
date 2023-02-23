@@ -1,12 +1,9 @@
 ---
-import { socialMedia } from "@data";
+import { navigation } from "@data";
 
 import { Icon } from "astro-icon";
 
 import MobileNavLink from "@components/shell/MobileNavLink.astro";
-
-const behanceUrl = socialMedia.filter((social) => social.name === "Behance")[0]
-  .url;
 ---
 
 <div
@@ -21,10 +18,11 @@ const behanceUrl = socialMedia.filter((social) => social.name === "Behance")[0]
       </button>
     </div>
     <nav class="mt-10 flex flex-col">
-      <MobileNavLink href="/">Home</MobileNavLink>
-      <MobileNavLink href={behanceUrl} newWindow>Portfolio</MobileNavLink>
-      <MobileNavLink href="/experience">Experience</MobileNavLink>
-      <MobileNavLink href="/blog">Blog</MobileNavLink>
+      {
+        navigation.map((item) => (
+          <MobileNavLink href={item.href}>{item.title}</MobileNavLink>
+        ))
+      }
     </nav>
   </div>
   <div class="mt-10 flex items-center gap-3 px-3">

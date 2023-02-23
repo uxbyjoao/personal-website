@@ -1,7 +1,12 @@
 /**
  * Type declarations
  */
-interface Experience {
+type NavigationItem = {
+  title: string;
+  href: string;
+};
+
+type Experience = {
   title: string;
   company: string;
   location: string;
@@ -37,20 +42,42 @@ interface Experience {
     | "PHP"
     | "WordPress"
   >;
-}
+};
 
-interface Education {
+type Education = {
   institution: string;
   location: string;
   endDate: string;
   description: string[];
-}
+};
 
-interface SocialMedia {
+type SocialMedia = {
   name: string;
   icon: string;
   url: string;
-}
+};
+
+/**
+ * Site navigation
+ */
+export const navigation: NavigationItem[] = [
+  {
+    title: "Home",
+    href: "/",
+  },
+  {
+    title: "Projects",
+    href: "/projects",
+  },
+  {
+    title: "Experience",
+    href: "/experience",
+  },
+  {
+    title: "Blog",
+    href: "/blog",
+  },
+];
 
 /**
  * Experience

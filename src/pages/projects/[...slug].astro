@@ -2,7 +2,7 @@
 import { checkAuth, formatDate } from "@utils";
 import { getEntryBySlug } from "astro:content";
 
-import ProjectLayout from "@layouts/ProjectLayout.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 
 const { slug } = Astro.params;
 const cookie = Astro.cookies.get("auth_token").value;
@@ -16,33 +16,35 @@ if (!project) {
   return Astro.redirect("/404");
 }
 
+const { title, description, datePublished, tags } = project.data;
+
 const { Content } = await project.render();
 ---
 
-<ProjectLayout
-  title={project.data.title}
-  description={project.data.description}
->
-  <div class="m-auto max-w-[700px]">
-    <h1 class="text-4xl font-medium md:px-6 md:text-5xl">
-      {project.data.title}
-    </h1>
-    {
-      project.data.description && (
-        <p class="mt-5 text-xl md:px-6 md:text-2xl">{project.data.lead}</p>
-      )
-    }
-    <div
-      class="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider md:px-6"
-    >
-      <p>
-        Published on <strong>{formatDate(project.data.datePublished)}</strong>
-      </p>
-    </div>
-    <div
-      class="prose-a:underlined-link prose mt-10 prose-headings:font-medium prose-figcaption:px-6 prose-figcaption:text-center prose-figcaption:italic prose-img:rounded-md dark:prose-invert md:prose-headings:px-6 md:prose-p:px-6"
-    >
-      <Content />
+<BaseLayout title={title} description={description}>
+  <div class="flex items-center justify-center pt-[260px] pb-[200px]">
+    <div class="max-w-[700px] px-4">
+      <h1 class="text-xl font-medium md:text-6xl">
+        {title}
+      </h1>
+      {description && <h2 class="mt-5 text-xl md:text-2xl">{description}</h2>}
+      <div class="mt-4">
+        <p class="text-xs uppercase tracking-wider">
+          Published on <strong>{formatDate(datePublished)}</strong>
+        </p>
+        <div class="mt-4 flex gap-2">
+          {
+            tags.map((tag) => (
+              <span class="rounded bg-blue-500/10 px-2 py-1 text-sm font-medium text-blue-400">
+                #{tag}
+              </span>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </div>
-</ProjectLayout>
+  <div>
+    <Content />
+  </div>
+</BaseLayout>

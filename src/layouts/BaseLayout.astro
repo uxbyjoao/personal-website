@@ -8,14 +8,12 @@ import "../styles/style.css";
 
 type Props = {
   title?: string;
-  heading?: string;
   description?: string;
   ogImageUrl?: string;
 };
 
 const {
   title = "Senior UX Designer based in Berlin",
-  heading,
   description = "I am a Senior UX Designer based in Berlin, Germany, currently working at UK-based startup, Nivoda.",
   ogImageUrl = "/assets/images/profile.png",
 } = Astro.props;

@@ -1,13 +1,10 @@
 ---
-import { socialMedia } from "@data";
+import { navigation } from "@data";
 
 import { Icon } from "astro-icon";
 
 import NavbarLink from "@components/shell/NavbarLink.astro";
 import Logo from "@components/shell/Logo.astro";
-
-const behanceUrl = socialMedia.filter((social) => social.name === "Behance")[0]
-  .url;
 ---
 
 <header
@@ -16,11 +13,12 @@ const behanceUrl = socialMedia.filter((social) => social.name === "Behance")[0]
   <div class="container flex h-[80px] items-center justify-between">
     <a class="text-stone-800 dark:text-stone-50" href="/"><Logo /></a>
     <nav class="hidden items-center gap-3 md:flex" role="menubar">
-      <NavbarLink href="/">Home</NavbarLink>
-      <NavbarLink href="/projects">Projects</NavbarLink>
-      <NavbarLink href="/experience">Experience</NavbarLink>
-      <NavbarLink href="/blog">Blog</NavbarLink>
-      <NavbarLink href="/contact">Contact</NavbarLink>
+      {
+        navigation.map((item) => (
+          <NavbarLink href={item.href}>{item.title}</NavbarLink>
+        ))
+      }
+
       <button
         aria-label="Dark/Light Mode"
         id="theme-button"
