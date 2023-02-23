@@ -1,8 +1,8 @@
 ---
-import { checkAuth } from "@utils";
+import { checkAuth, formatDate } from "@utils";
 import { getEntryBySlug } from "astro:content";
 
-import BaseLayout from "@layouts/BaseLayout.astro";
+import ProjectLayout from "@layouts/ProjectLayout.astro";
 
 const { slug } = Astro.params;
 const cookie = Astro.cookies.get("auth_token").value;
@@ -19,6 +19,30 @@ if (!project) {
 const { Content } = await project.render();
 ---
 
-<BaseLayout>
-  <Content />
-</BaseLayout>
+<ProjectLayout
+  title={project.data.title}
+  description={project.data.description}
+>
+  <div class="m-auto max-w-[700px]">
+    <h1 class="text-4xl font-medium md:px-6 md:text-5xl">
+      {project.data.title}
+    </h1>
+    {
+      project.data.description && (
+        <p class="mt-5 text-xl md:px-6 md:text-2xl">{project.data.lead}</p>
+      )
+    }
+    <div
+      class="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider md:px-6"
+    >
+      <p>
+        Published on <strong>{formatDate(project.data.datePublished)}</strong>
+      </p>
+    </div>
+    <div
+      class="prose-a:underlined-link prose mt-10 prose-headings:font-medium prose-figcaption:px-6 prose-figcaption:text-center prose-figcaption:italic prose-img:rounded-md dark:prose-invert md:prose-headings:px-6 md:prose-p:px-6"
+    >
+      <Content />
+    </div>
+  </div>
+</ProjectLayout>

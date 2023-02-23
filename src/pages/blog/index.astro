@@ -2,7 +2,7 @@
 import { formatDate } from "@utils";
 import { getCollection } from "astro:content";
 
-import BaseLayout from "@layouts/BaseLayout.astro";
+import NarrowLayout from "@layouts/NarrowLayout.astro";
 
 const blogPosts = await getCollection("blog");
 
@@ -11,7 +11,7 @@ const description = "João's blog about design, technology, music and life.";
 export const prerender = true;
 ---
 
-<BaseLayout title="Blog" description={description} heading="Blog">
+<NarrowLayout title="Blog" description={description} heading="Blog">
   <ul class="mt-10">
     {
       blogPosts.map((post) => (
@@ -29,4 +29,4 @@ export const prerender = true;
       ))
     }
   </ul>
-</BaseLayout>
+</NarrowLayout>

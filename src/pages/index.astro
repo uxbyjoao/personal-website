@@ -1,12 +1,12 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import NarrowLayout from "@layouts/NarrowLayout.astro";
 import Hero from "@components/home/Hero.astro";
 import Experience from "@components/home/Experience.astro";
 
 export const prerender = true;
 ---
 
-<BaseLayout>
+<NarrowLayout>
   <Hero />
   <Experience keyOnly />
-</BaseLayout>
+</NarrowLayout>

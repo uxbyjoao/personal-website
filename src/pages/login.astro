@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import NarrowLayout from "@layouts/NarrowLayout.astro";
 import LoginForm from "@components/shell/LoginForm";
 
 const reqURLstring = Astro.request.url;
@@ -11,7 +11,7 @@ if (!redirect) {
 }
 ---
 
-<BaseLayout title="Password needed">
+<NarrowLayout title="Password needed">
   <div class="m-auto flex min-h-[420px] max-w-[450px] flex-col gap-5">
     <div class="flex flex-col gap-1 text-center">
       <h1 class="text-2xl font-semibold">Sorry! Projects are restricted.</h1>
@@ -23,4 +23,4 @@ if (!redirect) {
       send you the password.
     </p>
   </div>
-</BaseLayout>
+</NarrowLayout>

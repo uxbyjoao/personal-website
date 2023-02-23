@@ -34,10 +34,7 @@ const {
     >
     </div>
     <Navbar />
-    <main class="container pt-40">
-      {heading && <h1 class="mb-10 text-3xl font-medium">{heading}</h1>}
-      <slot />
-    </main>
+    <slot />
     <Footer />
     <script src="../scripts/mobileNav.ts"></script>
     <script src="../scripts/analytics.js"></script>

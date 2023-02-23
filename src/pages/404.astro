@@ -1,8 +1,10 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import NarrowLayout from "@layouts/NarrowLayout.astro";
+
+export const prerender = true;
 ---
 
-<BaseLayout title="Page not found">
+<NarrowLayout title="Page not found">
   <div class="m-auto flex flex-col gap-8 text-center">
     <h1 class="text-3xl font-medium">
       Believe it or not, the page was not found.
@@ -18,4 +20,4 @@ import BaseLayout from "@layouts/BaseLayout.astro";
       page.
     </p>
   </div>
-</BaseLayout>
+</NarrowLayout>
