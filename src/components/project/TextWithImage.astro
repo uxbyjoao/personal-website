@@ -1,0 +1,20 @@
+---
+interface Props {
+  right?: boolean;
+}
+
+const { right } = Astro.props;
+---
+
+<div
+  class="col-span-10 col-start-2 mb-20 grid grid-cols-10 items-center gap-x-6"
+>
+  <div
+    class:list={[
+      "col-span-4 aspect-[4/3] rounded-lg bg-red-500",
+      { "order-last": right },
+    ]}
+  >
+  </div>
+  <div class="prose-md prose col-span-6"><slot /></div>
+</div>

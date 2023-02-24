@@ -18,21 +18,45 @@ tags:
   - "figma"
 ---
 
+import BigImage from "@components/project/BigImage.astro";
+import Process from "@components/project/Process.astro";
+import Roles from "@components/project/Roles.astro";
+import Text from "@components/project/Text.astro";
+import TextWithImage from "@components/project/TextWithImage.astro";
+import TwoColGallery from "@components/project/TwoColGallery.astro";
+import TwoImages from "@components/project/TwoImages.astro";
+
+<BigImage />
+
+<Text>
+
 ## Introduction
 
 **Nivoda Express** is an innovation by Nivoda for premium diamond shipping. The goal of the project is to obtain a competitive advantage in the diamonds e-commerce space by offering industry-leading shipping times for end customers in North America and Europe, while also opening up business opportunities for diamond suppliers in India. Nivoda Express was launched in early 2023 the United Kingdom as a pilot, and is currently live with a sell-through rate of around 20%.
 
-## My roles
+</Text>
 
-Research, low & high-fidelity prototyping, user testing, handover.
+<TwoImages />
+
+<Roles roles={frontmatter.roles} />
+
+<TextWithImage>
 
 ## The problem
 
 Delivering diamonds for end customers in Europe and North America currently means dealing with long shipping times. End customers — local diamond dealers — in these regions usually have to wait between **7 to 10 business days** for their purchases in traditional marketplaces to reach them — sometimes more.
 
+</TextWithImage>
+
+<Text>
+
 ## Proposed solution
 
 Use data mining, advanced algorithms and industry knowledge to predict sales in these regions, and ship stones to local Nivoda fulfilment centres in advance. With this approach, Nivoda can drastically cut down delivery times to end customers. The initial proposed goal is 1 to 2 business days, but even same-day shipping is possible.
+
+</Text>
+
+<Text>
 
 ## The challenge
 
@@ -40,6 +64,54 @@ Currently, there is no off-the-shelf inventory and shipment management solution 
 
 It was decided early on that, in order to automate as much as possible, RFID-scanning boards developed by a company called SpaceCode would be used, so the system would have to be build with the SpaceCode board's technical constrains in mind. The boards read RFID tags in bulk and are IoT-enabled so that they can send scanning data to the cloud, so the plan was to use the boards for shipment creation and integrity checking, as well as on-site inventory control.
 
-## Research
+</Text>
 
-Initially, **expert interviews** were conducted to construct the context of use. After that, **task analysis** and **customer journey maps** were employed to properly model the user journeys and system responses. **Low-fidelity wireframes** were used to sketch the general flows.
+<Process />
+
+<TextWithImage>
+
+## Context of use
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod
+
+</TextWithImage>
+
+<TextWithImage right>
+
+## User requirements
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod
+
+</TextWithImage>
+
+<Text>
+
+## Design solutions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod
+
+</Text>
+
+<TwoColGallery />
+
+<BigImage />
+
+<BigImage />
+
+<BigImage />
+
+<Text>
+
+## Evaluation & testing
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod
+
+</Text>
+
+<Text>
+
+## Results & next steps
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget aliquam nisl nisl sit amet nunc. Donec euismod
+
+</Text>
