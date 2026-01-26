@@ -1,25 +1,27 @@
 /* Inter */
+/* Less commonly used weights - use optional to prevent FOUT */
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 100;
-  font-display: swap;
+  font-display: optional;
   src: url(/assets/fonts/Inter/Inter-Thin.ttf) format("trueType");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 200;
-  font-display: swap;
+  font-display: optional;
   src: url(/assets/fonts/Inter/Inter-ExtraLight.ttf) format("trueType");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 300;
-  font-display: swap;
+  font-display: optional;
   src: url(/assets/fonts/Inter/Inter-Light.ttf) format("trueType");
 }
+/* Primary weights - preloaded, use swap for fast loading */
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -41,24 +43,25 @@
   font-display: swap;
   src: url(/assets/fonts/Inter/Inter-SemiBold.ttf) format("trueType");
 }
+/* Less commonly used weights - use optional to prevent FOUT */
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-display: swap;
+  font-display: optional;
   src: url(/assets/fonts/Inter/Inter-Bold.ttf) format("trueType");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 800;
-  font-display: swap;
+  font-display: optional;
   src: url(/assets/fonts/Inter/Inter-ExtraBold.ttf) format("trueType");
 }
 @font-face {
   font-family: "Inter";
   font-style: normal;
   font-weight: 900;
-  font-display: swap;
+  font-display: optional;
   src: url(/assets/fonts/Inter/Inter-Black.ttf) format("trueType");
 }

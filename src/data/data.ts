@@ -36,6 +36,11 @@ interface Experience {
     | "Logic Pro"
     | "PHP"
     | "WordPress"
+    | "Mixpanel"
+    | "HTML/CSS"
+    | "Claude Code"
+    | "Useberry"
+    | "Prolific"
   >;
 }
 
@@ -57,9 +62,9 @@ interface SocialMedia {
  */
 export const experience: Experience[] = [
   {
-    title: "Senior UX Designer",
+    title: "Lead Product Designer",
     company: "Nivoda",
-    location: "London, England (Remote)",
+    location: "🇬🇧 London, England (Remote)",
     startDate: "Apr 2022",
     endDate: "Present",
     key: true,
@@ -70,20 +75,23 @@ export const experience: Experience[] = [
       "Coaching designers and leadership on design systems development, methodology and Figma best practices.",
     ],
     skills: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
       "Figma",
+      "Mixpanel",
+      "Useberry",
+      "Prolific",
+      "HTML/CSS",
+      "React",
+      "TailwindCSS",
+      "JavaScript",
       "ProtoPie",
       "ZeroHeight",
-      "LottieFiles",
+      "Claude Code",
     ],
   },
   {
     title: "Senior UX/UI Designer",
     company: "Aklamio",
-    location: "Berlin, Germany (Hybrid)",
+    location: "🇩🇪 Berlin, Germany (Hybrid)",
     startDate: "Jan 2022",
     endDate: "Apr 2022",
     key: false,
@@ -104,7 +112,7 @@ export const experience: Experience[] = [
   {
     title: "UI Designer",
     company: "Contentful",
-    location: "Berlin, Germany (Hybrid)",
+    location: "🇩🇪 Berlin, Germany (Hybrid)",
     startDate: "Sep 2021",
     endDate: "Dec 2021",
     key: true,
@@ -114,8 +122,7 @@ export const experience: Experience[] = [
       "Assisted in optimizing assets and animations.",
     ],
     skills: [
-      "HTML",
-      "CSS",
+      "HTML/CSS",
       "JavaScript",
       "React",
       "Gatsby",
@@ -127,7 +134,7 @@ export const experience: Experience[] = [
   {
     title: "UX/UI Designer",
     company: "Aklamio",
-    location: "Berlin, Germany (Hybrid)",
+    location: "🇩🇪 Berlin, Germany (Hybrid)",
     startDate: "Aug 2021",
     endDate: "Sep 2021",
     key: false,
@@ -136,8 +143,7 @@ export const experience: Experience[] = [
       "Contributed for foundational development of custom end-to-end design system.",
     ],
     skills: [
-      "HTML",
-      "CSS",
+      "HTML/CSS",
       "JavaScript",
       "React",
       "Figma",
@@ -149,7 +155,7 @@ export const experience: Experience[] = [
   {
     title: "UX/UI Designer",
     company: "NE2 Group",
-    location: "Calgary, Alberta, Canada (Remote)",
+    location: "🇨🇦 Calgary, Canada (Remote)",
     startDate: "Sep 2019",
     endDate: "Aug 2021",
     key: true,
@@ -162,8 +168,7 @@ export const experience: Experience[] = [
     ],
     skills: [
       "Adobe Creative Suite",
-      "HTML",
-      "CSS",
+      "HTML/CSS",
       "JavaScript",
       "Bootstrap",
       "TailwindCSS",
@@ -179,7 +184,7 @@ export const experience: Experience[] = [
   {
     title: "UX/UI Designer, Front-End Developer",
     company: "Freelance",
-    location: "Fortaleza, Brazil",
+    location: "🇧🇷 Fortaleza, Brazil",
     startDate: "2014",
     endDate: "Sep 2019",
     key: false,
@@ -189,8 +194,7 @@ export const experience: Experience[] = [
     ],
     skills: [
       "Adobe Creative Suite",
-      "HTML",
-      "CSS",
+      "HTML/CSS",
       "JavaScript",
       "React",
       "Jekyll",
@@ -202,7 +206,7 @@ export const experience: Experience[] = [
   {
     title: "Senior Art Director, Web Designer",
     company: "Convertte",
-    location: "Fortaleza, Brazil",
+    location: "🇧🇷 Fortaleza, Brazil",
     startDate: "2012",
     endDate: "2014",
     key: false,
@@ -213,15 +217,14 @@ export const experience: Experience[] = [
     skills: [
       "Adobe Creative Suite",
       "Sketch",
-      "HTML",
-      "CSS",
+      "HTML/CSS",
       "Google Analytics",
     ],
   },
   {
     title: "Web & Graphic Designer",
     company: "Reimagine Comunicação",
-    location: "Fortaleza, Brazil",
+    location: "🇧🇷 Fortaleza, Brazil",
     startDate: "2012",
     endDate: "2012",
     key: false,
@@ -234,7 +237,7 @@ export const experience: Experience[] = [
   {
     title: "Professional Musician",
     company: "Freelance",
-    location: "Fortaleza, Brazil",
+    location: "🇧🇷 Fortaleza, Brazil",
     startDate: "2010",
     endDate: "2017",
     key: false,
@@ -244,8 +247,7 @@ export const experience: Experience[] = [
     ],
     skills: [
       "Adobe Creative Suite",
-      "HTML",
-      "CSS",
+      "HTML/CSS",
       "Ableton Live",
       "Logic Pro",
     ],
@@ -253,7 +255,7 @@ export const experience: Experience[] = [
   {
     title: "Art Director",
     company: "Paz Comunicação Estratégica",
-    location: "Fortaleza, Brazil (Contract)",
+    location: "🇧🇷 Fortaleza, Brazil (Contract)",
     startDate: "2008",
     endDate: "2008",
     key: false,
@@ -266,7 +268,7 @@ export const experience: Experience[] = [
   {
     title: "Art Direction Intern",
     company: "Ágil",
-    location: "Fortaleza, Brazil",
+    location: "🇧🇷 Fortaleza, Brazil",
     startDate: "2007",
     endDate: "2008",
     key: false,
@@ -281,13 +283,13 @@ export const experience: Experience[] = [
 export const education: Education[] = [
   {
     institution: "Rhine-Waal University of Applied Sciences",
-    location: "Kamp-Lintfort, North Rhine-Westphalia, Germany",
+    location: "🇩🇪 Kamp-Lintfort, Germany",
     endDate: "Ongoing",
     description: ["M. Sc. in Usability Engineering"],
   },
   {
     institution: "Rhine-Waal University of Applied Sciences",
-    location: "Kleve, North Rhine-Westphalia, Germany",
+    location: "🇩🇪 Kleve, Germany",
     endDate: "2019 (Incomplete)",
     description: [
       "Incomplete B. Sc. in Mechatronics Systems Engineering (4 semesters)",
@@ -295,7 +297,7 @@ export const education: Education[] = [
   },
   {
     institution: "Universidade de Fortaleza (UNIFOR)",
-    location: "Fortaleza, Brazil",
+    location: "🇧🇷 Fortaleza, Brazil",
     endDate: "2015",
     description: ["B. A. in Communication Sciences"],
   },

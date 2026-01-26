@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   href: string;
@@ -19,6 +19,8 @@ function checkPathName(href: string) {
 <a
   role="menuitem"
   href={href}
+  target={newWindow ? "_blank" : "_self"}
+  rel={newWindow ? "noopener noreferrer" : undefined}
   class:list={[
     "flex justify-between items-center p-3 rounded-md font-medium",
     {

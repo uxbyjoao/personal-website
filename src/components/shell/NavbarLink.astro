@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   href: string;
@@ -28,7 +28,7 @@ function checkPathName(href: string) {
     },
   ]}
   href={href}
-  rel="prefetch"
   target={newWindow ? "_blank" : "_self"}
+  rel={newWindow ? "noopener noreferrer" : undefined}
   ><slot /> {newWindow && <Icon name="tabler:external-link" size={16} />}</a
 >

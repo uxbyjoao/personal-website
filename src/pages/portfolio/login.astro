@@ -1,0 +1,90 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+let error = false;
+
+// Handle POST request for login
+if (Astro.request.method === "POST") {
+  const formData = await Astro.request.formData();
+  const password = formData.get("password");
+  const redirectUrl = formData.get("redirect") || "/portfolio";
+
+  const correctPassword = import.meta.env.PORTFOLIO_PASSWORD;
+
+  if (password === correctPassword) {
+    // Set auth cookie (2 hours)
+    const sessionData = {
+      authenticated: true,
+      expires: Date.now() + 2 * 60 * 60 * 1000,
+    };
+
+    Astro.cookies.set("portfolio_auth", JSON.stringify(sessionData), {
+      path: "/",
+      httpOnly: true,
+      secure: import.meta.env.PROD,
+      sameSite: "lax",
+      maxAge: 60 * 60 * 2, // 2 hours in seconds
+    });
+
+    return Astro.redirect(redirectUrl as string);
+  } else {
+    error = true;
+  }
+}
+
+// Get redirect URL from query params
+const redirectUrl = Astro.url.searchParams.get("redirect") || "/portfolio";
+---
+
+<BaseLayout
+  title="Portfolio Login"
+  description="Login to view protected portfolio content"
+>
+  <div class="mx-auto max-w-md">
+    <h1 class="mb-6 text-3xl font-medium">Portfolio Access</h1>
+    <p class="mb-8 text-stone-600 dark:text-stone-400">
+      Projects are locked. Please enter the password to continue.
+    </p>
+
+    {
+      error && (
+        <div class="mb-6 rounded-md border border-red-300 bg-red-100 p-4 text-red-700 dark:border-red-700 dark:bg-red-900/30 dark:text-red-300">
+          Incorrect password. Please try again.
+        </div>
+      )
+    }
+
+    <form method="POST" class="space-y-6">
+      <input type="hidden" name="redirect" value={redirectUrl} />
+
+      <div>
+        <label for="password" class="mb-2 block text-sm font-medium">
+          Password
+        </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          autocomplete="current-password"
+          class="w-full rounded-md border border-stone-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-stone-700 dark:bg-stone-800"
+          placeholder="Enter password"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full rounded-md bg-blue-500 px-4 py-3 font-medium text-white transition-colors hover:bg-blue-600"
+      >
+        Access Portfolio
+      </button>
+    </form>
+
+    <p class="mt-8 text-sm text-stone-500 dark:text-stone-400">
+      Need access? <a
+        href="mailto:hello@uxbyjoao.me"
+        class="text-blue-500 hover:underline">Contact me</a
+      >
+    </p>
+  </div>
+</BaseLayout>

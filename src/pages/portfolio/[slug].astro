@@ -1,0 +1,103 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const { slug } = Astro.params;
+
+// Get the project by slug
+const portfolioProjects = await getCollection("portfolio");
+const project = portfolioProjects.find((p) => p.slug === slug);
+
+// 404 if project not found
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await project.render();
+
+const formatDate = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  return new Date(date).toLocaleDateString("en-US", options);
+};
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.lead || `Portfolio project: ${project.data.title}`}
+>
+  <div class="m-auto max-w-[700px]">
+    <a
+      href="/portfolio"
+      class="mb-6 inline-flex items-center gap-1 text-sm text-blue-500 hover:underline"
+    >
+      &larr; Back to Portfolio
+    </a>
+
+    <h1 class="text-4xl font-medium md:px-6 md:text-5xl">
+      {project.data.title}
+    </h1>
+
+    {
+      project.data.lead && (
+        <p class="mt-5 text-xl md:px-6 md:text-2xl">{project.data.lead}</p>
+      )
+    }
+
+    <div
+      class="mt-4 flex flex-wrap gap-4 text-xs uppercase tracking-wider md:px-6"
+    >
+      <p>
+        <strong>{formatDate(project.data.datePublished)}</strong>
+      </p>
+      {
+        project.data.client && (
+          <p>
+            Client: <strong>{project.data.client}</strong>
+          </p>
+        )
+      }
+      {
+        project.data.role && (
+          <p>
+            Role: <strong>{project.data.role}</strong>
+          </p>
+        )
+      }
+    </div>
+
+    {
+      project.data.tags && (
+        <div class="mt-4 flex flex-wrap gap-2 md:px-6">
+          {project.data.tags.map((tag) => (
+            <span class="rounded bg-stone-200 px-2 py-1 text-xs dark:bg-stone-700">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )
+    }
+
+    <div
+      class="prose-a:underlined-link prose mt-10 prose-headings:font-medium prose-figcaption:px-6 prose-figcaption:text-center prose-figcaption:italic prose-img:rounded-md dark:prose-invert md:prose-headings:px-6 md:prose-p:px-6"
+    >
+      <Content />
+    </div>
+
+    <div
+      class="mt-16 border-t border-stone-200 pt-8 dark:border-stone-700 md:px-6"
+    >
+      <form action="/portfolio/logout" method="POST">
+        <button
+          type="submit"
+          class="text-sm text-stone-500 transition-colors hover:text-red-500"
+        >
+          Logout
+        </button>
+      </form>
+    </div>
+  </div>
+</BaseLayout>

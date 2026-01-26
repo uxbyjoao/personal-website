@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer components {
+  html {
+    scrollbar-gutter: stable;
+  }
   body {
     @apply bg-stone-50 dark:bg-stone-900;
   }

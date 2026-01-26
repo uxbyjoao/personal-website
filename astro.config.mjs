@@ -2,19 +2,14 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import robotsTxt from "astro-robots-txt";
 import sitemap from "@astrojs/sitemap";
-import prefetch from "@astrojs/prefetch";
 import mdx from "@astrojs/mdx";
+import vercel from "@astrojs/vercel";
+import icon from "astro-icon";
 
-// https://astro.build/config
-import image from "@astrojs/image";
-
-// https://astro.build/config
-import vercel from "@astrojs/vercel/serverless";
-
-// https://astro.build/config
 export default defineConfig({
   site: "https://uxbyjoao.me",
   output: "server",
+  prefetch: true,
   integrations: [
     tailwind(),
     sitemap({
@@ -22,11 +17,15 @@ export default defineConfig({
       priority: 0.7,
       lastmod: new Date(),
       entryLimit: 10000,
+      filter: (page) => !page.includes("/portfolio"),
     }),
     robotsTxt(),
-    prefetch(),
     mdx(),
-    image(),
+    icon({
+      include: {
+        tabler: ["*"],
+      },
+    }),
   ],
   adapter: vercel(),
 });
