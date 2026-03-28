@@ -1,24 +1,17 @@
 ---
-import Footer from "@components/shell/Footer.astro";
 import Navbar from "@components/shell/Navbar.astro";
-import MobileNav from "@components/shell/MobileNav.astro";
+import Footer from "@components/shell/Footer.astro";
 import MetaHead from "@components/shell/MetaHead.astro";
 
 import "../styles/style.css";
 
 type Props = {
   title?: string;
-  heading?: string;
   description?: string;
   ogImageUrl?: string;
 };
 
-const {
-  title = "Senior UX Designer based in Berlin",
-  heading,
-  description = "I am a Senior UX Designer based in Berlin, Germany, currently working at UK-based startup, Nivoda.",
-  ogImageUrl = "/assets/images/profile.png",
-} = Astro.props;
+const { title, description, ogImageUrl } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -26,20 +19,23 @@ const {
   <head>
     <MetaHead title={title} description={description} ogImageUrl={ogImageUrl} />
   </head>
-  <body>
-    <MobileNav />
-    <div
-      id="mobile-nav-overlay"
-      class="fixed top-0 left-0 z-40 hidden h-screen w-screen bg-[#000000] opacity-0"
-    >
-    </div>
+  <body class="bg-[var(--bg)] text-[var(--text-secondary)]">
     <Navbar />
-    <main class="container pt-40">
-      {heading && <h1 class="mb-10 text-3xl font-medium">{heading}</h1>}
+    <main class="pt-16">
       <slot />
     </main>
     <Footer />
-
-    <script src="../scripts/analytics.js"></script>
+    <script>
+      import { inject } from "@vercel/analytics";
+      inject({ mode: import.meta.env.MODE === "production" ? "production" : "development" });
+    </script>
   </body>
 </html>
+
+<script is:inline>
+  // Apply theme immediately to prevent flash
+  (function() {
+    const theme = localStorage.getItem("theme") || "dark";
+    if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
+  })();
+</script>
