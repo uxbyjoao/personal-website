@@ -37,6 +37,7 @@ const formatDate = (date: Date) =>
         {entries.map((entry) => (
           <a
             href={`/portfolio/${entry.id}`}
+            data-reveal
             class="group bg-[var(--surface)] border border-[var(--border)] rounded-lg p-6 transition-all duration-200 hover:bg-[var(--surface-elevated)] hover:-translate-y-0.5 block"
           >
             <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
