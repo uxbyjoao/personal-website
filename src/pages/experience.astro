@@ -1,15 +1,12 @@
 ---
-import { info } from "@data";
-
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Experience from "@components/home/Experience.astro";
 import Education from "@components/home/Education.astro";
-
-const title = "Experience";
-
 ---
 
-<BaseLayout title={title} heading={title}>
-  <Experience />
-  <Education />
+<BaseLayout title="Experience — João Gomes">
+  <div class="pt-24">
+    <Experience />
+    <Education />
+  </div>
 </BaseLayout>

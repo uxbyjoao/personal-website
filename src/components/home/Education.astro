@@ -1,29 +1,29 @@
 ---
 import { education } from "@data";
-
-import ListSection from "./ListSection.astro";
 ---
 
-<ListSection heading="Education">
-  {
-    education.map((item, index, items) => (
-      <div>
-        <div class="flex flex-wrap items-center justify-between">
-          <div class="flex gap-2">
-            <h3 class="text-xl">{item.institution}</h3>
-          </div>
-          <p class="dark:text-gray text-sm">{item.endDate}</p>
-        </div>
-        <p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
-          {item.location}
+<section class="mx-auto max-w-3xl px-6 py-24">
+  <h2 class="font-display text-[48px] font-extrabold text-[var(--text-primary)] mb-12">
+    Education
+  </h2>
+  <div class="flex flex-col gap-4">
+    {education.map((entry) => (
+      <article class="bg-[var(--surface)] border border-[var(--border)] rounded-lg p-8">
+        <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
+          {entry.endDate}
+        </span>
+        <h3 class="font-display text-xl font-semibold text-[var(--text-primary)] mt-2">
+          {entry.institution}
+        </h3>
+        <p class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)] mt-1">
+          {entry.location}
         </p>
-        <ul class="my-7 flex list-inside list-disc flex-col gap-2">
-          {item.description.map((item) => (
-            <li class="dark:text-gray">{item}</li>
-          ))}
-        </ul>
-        {index !== items.length - 1 && <hr class="mt-10 opacity-10" />}
-      </div>
-    ))
-  }
-</ListSection>
+        {entry.description.map((desc) => (
+          <p class="font-mono text-[13px] font-light text-[var(--text-secondary)] mt-3 leading-relaxed">
+            {desc}
+          </p>
+        ))}
+      </article>
+    ))}
+  </div>
+</section>
