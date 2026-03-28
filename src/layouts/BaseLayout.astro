@@ -18,6 +18,13 @@ const { title, description, ogImageUrl } = Astro.props;
 <html lang="en">
   <head>
     <MetaHead title={title} description={description} ogImageUrl={ogImageUrl} />
+    <script is:inline>
+      // Apply theme immediately to prevent flash
+      (function() {
+        const theme = localStorage.getItem("theme") || "dark";
+        if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
+      })();
+    </script>
   </head>
   <body class="bg-[var(--bg)] text-[var(--text-secondary)]">
     <Navbar />
@@ -31,11 +38,3 @@ const { title, description, ogImageUrl } = Astro.props;
     </script>
   </body>
 </html>
-
-<script is:inline>
-  // Apply theme immediately to prevent flash
-  (function() {
-    const theme = localStorage.getItem("theme") || "dark";
-    if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
-  })();
-</script>
