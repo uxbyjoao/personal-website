@@ -1,53 +1,55 @@
 ---
 import { experience } from "@data";
+import SkillsList from "./SkillsList.astro";
 
-import ButtonLink from "@components/ButtonLink.astro";
-import ListSection from "@components/home/ListSection.astro";
-import SkillsList from "@components/home/SkillsList.astro";
-interface Props {
+type Props = {
   keyOnly?: boolean;
-}
+};
 
-const { keyOnly } = Astro.props;
-
-const list = experience.filter((item) => (keyOnly ? item.key : true));
+const { keyOnly = false } = Astro.props;
+const entries = keyOnly ? experience.filter((e) => e.key) : experience;
 ---
 
-<ListSection heading={keyOnly ? "Key Experiences" : "Experience"}>
-  {
-    list.map((item, index, items) => (
-      <div>
-        <div class="flex flex-col flex-wrap items-baseline justify-between md:flex-row">
-          <div class="flex gap-2">
-            <h3 class="text-xl font-medium">
-              {item.title} <span class="text-xl font-light opacity-50">—</span>{" "}
-              {item.company}
-            </h3>
-          </div>
-          <p class="dark:text-gray mt-1 text-sm md:m-0">
-            {item.startDate} — {item.endDate}
-          </p>
+<section class="mx-auto max-w-3xl px-6 py-24">
+  <h2 class="font-display text-[48px] font-extrabold text-[var(--text-primary)] mb-12">
+    {keyOnly ? "Key Experience" : "Experience"}
+  </h2>
+  <div class="flex flex-col gap-4">
+    {entries.map((entry) => (
+      <article class="bg-[var(--surface)] border border-[var(--border)] rounded-lg p-8 transition-all duration-200 hover:bg-[var(--surface-elevated)] hover:-translate-y-0.5">
+        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+          <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
+            {entry.startDate} — {entry.endDate}
+          </span>
+          <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
+            {entry.location}
+          </span>
         </div>
-        <p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-          {item.location}
+        <h3 class="font-display text-[32px] font-extrabold text-[var(--text-primary)] mt-3">
+          {entry.title}
+        </h3>
+        <p class="font-mono text-sm mt-1">
+          <span class="text-[var(--accent)]">{entry.company}</span>
         </p>
-        <ul class="my-7 flex list-disc flex-col gap-2 pl-4">
-          {item.description.map((item) => (
-            <li class="dark:text-gray">{item}</li>
+        <ul class="mt-4 flex flex-col gap-2">
+          {entry.description.map((desc) => (
+            <li class="font-mono text-[13px] font-light text-[var(--text-secondary)] leading-relaxed">
+              {desc}
+            </li>
           ))}
         </ul>
-        {item.skills && <SkillsList skills={item.skills} />}
-        {index !== items.length - 1 && <hr class="mt-10 dark:opacity-10" />}
-      </div>
-    ))
-  }
-  {
-    keyOnly && (
-      <div>
-        <ButtonLink href="/experience" iconLeft="tabler:arrow-right">
-          See full experience & education
-        </ButtonLink>
-      </div>
-    )
-  }
-</ListSection>
+        <SkillsList skills={entry.skills} />
+      </article>
+    ))}
+  </div>
+  {keyOnly && (
+    <div class="mt-8 text-center">
+      <a
+        href="/experience"
+        class="font-mono text-sm text-[var(--accent)] border-b border-[var(--accent)] pb-0.5 hover:text-[var(--accent-hover)] transition-colors duration-200"
+      >
+        See full experience &rarr;
+      </a>
+    </div>
+  )}
+</section>
