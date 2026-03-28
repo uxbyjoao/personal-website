@@ -1,23 +1,19 @@
 ---
-import { Image } from "astro:assets";
-
-interface Props {
+type Props = {
   src: string | import("astro").ImageMetadata;
   alt: string;
   caption?: string;
-  width: number;
-  height: number;
-}
+};
 
-const { src, caption, alt, width, height } = Astro.props;
+const { src, alt, caption } = Astro.props;
+const imgSrc = typeof src === "string" ? src : src.src;
 ---
-<figure>
-  <Image
-    src={src}
-    sizes="(max-width: 800px) 100vw, 800px"
-    alt={alt}
-    width={width}
-    height={height}
-  />
-  {caption && <figcaption>{caption}</figcaption>}
+
+<figure class="my-8">
+  <img src={imgSrc} alt={alt} class="w-full rounded-lg" loading="lazy" />
+  {caption && (
+    <figcaption class="mt-2 text-center font-mono text-xs text-[var(--text-muted)] italic">
+      {caption}
+    </figcaption>
+  )}
 </figure>

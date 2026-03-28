@@ -1,49 +1,44 @@
 ---
 import { getCollection, render } from "astro:content";
-
 import BaseLayout from "@layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const blogPosts = await getCollection("blog");
-  return blogPosts.map((post) => {
-    return {
-      params: { path: post.id },
-      props: { post },
-    };
-  });
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { path: post.id },
+    props: { post },
+  }));
 }
-
-const formatDate = (date: Date) => {
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  return new Date(date).toLocaleDateString("en-US", options);
-};
 
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const formatDate = (date: Date) =>
+  new Date(date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+// Approximate read time (200 words/min)
+const readTime = Math.max(1, Math.floor((post.body ?? "").split(/\s+/).length / 200));
 ---
 
-<BaseLayout title={post.data.title} description={post.data.lead} ogImageUrl="">
-  <div class="m-auto max-w-[700px]">
-    <h1 class="text-4xl font-medium md:px-6 md:text-5xl">
-      {post.data.title}
-    </h1>
-    {
-      post.data.lead && (
-        <p class="mt-5 text-xl md:px-6 md:text-2xl">{post.data.lead}</p>
-      )
-    }
-    <div
-      class="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider md:px-6"
-    >
-      <p>
-        Published on <strong>{formatDate(post.data.datePublished)}</strong>
-      </p>
-    </div>
-    <div
-      class="prose-a:underlined-link prose mt-10 prose-headings:font-medium prose-figcaption:px-6 prose-figcaption:text-center prose-figcaption:italic prose-img:rounded-md dark:prose-invert md:prose-headings:px-6 md:prose-p:px-6"
-    >
+<BaseLayout title={post.data.title} description={post.data.lead}>
+  <article class="mx-auto max-w-[720px] px-6 pt-24 pb-24">
+    <header class="mb-12">
+      <h1 class="font-display text-[48px] font-extrabold text-[var(--text-primary)] leading-tight">
+        {post.data.title}
+      </h1>
+      {post.data.lead && (
+        <p class="mt-4 font-mono text-base font-light text-[var(--text-secondary)] leading-relaxed">
+          {post.data.lead}
+        </p>
+      )}
+      <div class="mt-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
+        <span>{formatDate(post.data.datePublished)}</span>
+        <span class="text-[var(--border)]">/</span>
+        <span>{readTime} min read</span>
+      </div>
+    </header>
+    <div class="prose prose-lg max-w-none">
       <Content />
     </div>
-  </div>
+  </article>
 </BaseLayout>
