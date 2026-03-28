@@ -16,19 +16,23 @@ export const POST: APIRoute = async ({ request }) => {
   const contactEmail = import.meta.env.CONTACT_EMAIL;
 
   if (apiKey && contactEmail) {
-    await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: "Portfolio <noreply@uxbyjoao.me>",
-        to: contactEmail,
-        subject: `Portfolio access request from ${name}`,
-        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message || "(none)"}`,
-      }),
-    });
+    try {
+      await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "Portfolio <noreply@uxbyjoao.me>",
+          to: contactEmail,
+          subject: `Portfolio access request from ${name}`,
+          text: `Name: ${name}\nEmail: ${email}\nMessage: ${message || "(none)"}`,
+        }),
+      });
+    } catch (err) {
+      console.error("[Contact] Failed to send email:", err);
+    }
   } else {
     console.log("[Contact Request]", { name, email, message });
   }

@@ -4,7 +4,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 export const prerender = false;
 
-const { slug } = Astro.params;
+const slug = Astro.params.slug; // [...slug] gives string | undefined
 const entries = await getCollection("portfolio");
 const entry = entries.find((e) => e.id === slug);
 
