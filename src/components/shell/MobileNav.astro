@@ -1,8 +1,6 @@
 ---
 import { socialMedia } from "@data";
 
-import { Icon } from "astro-icon";
-
 import MobileNavLink from "@components/shell/MobileNavLink.astro";
 
 const behanceUrl = socialMedia.filter((social) => social.name === "Behance")[0]
@@ -17,7 +15,7 @@ const behanceUrl = socialMedia.filter((social) => social.name === "Behance")[0]
     <div class="flex items-center justify-between">
       <p class="p-3 font-medium">João Gomes</p>
       <button class="p-2 text-stone-500" id="mobile-nav-close">
-        <Icon name="tabler:x" size={20} />
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     </div>
     <nav class="mt-10 flex flex-col">
