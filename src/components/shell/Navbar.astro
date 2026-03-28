@@ -54,6 +54,8 @@ const navLinks = [
       id="mobile-menu-btn"
       class="md:hidden text-[var(--text-primary)] p-1"
       aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
     >
       <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
@@ -61,7 +63,7 @@ const navLinks = [
 </nav>
 
 <!-- Mobile overlay menu -->
-<div id="mobile-menu" class="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 transition-all duration-300" style="background: var(--bg); opacity: 0; pointer-events: none; visibility: hidden;">
+<div id="mobile-menu" class="fixed inset-0 z-[60] flex flex-col items-center justify-center gap-8 transition-all duration-300" style="background: var(--bg); opacity: 0; pointer-events: none; visibility: hidden;" role="dialog" aria-modal="true" aria-label="Navigation">
   <button id="mobile-menu-close" class="absolute top-5 right-6 text-[var(--text-primary)] p-1" aria-label="Close menu">
     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path d="M18 6L6 18M6 6l12 12"/></svg>
   </button>
@@ -121,23 +123,37 @@ const navLinks = [
     document.getElementById("mobile-theme-toggle")?.addEventListener("click", toggleTheme);
 
     // Mobile menu
-    document.getElementById("mobile-menu-btn")?.addEventListener("click", () => {
-      const menu = document.getElementById("mobile-menu");
+    const menuBtn = document.getElementById("mobile-menu-btn");
+    const menuClose = document.getElementById("mobile-menu-close");
+    const menu = document.getElementById("mobile-menu");
+
+    function openMenu() {
       if (menu) {
         menu.style.opacity = "1";
         menu.style.pointerEvents = "auto";
         menu.style.visibility = "visible";
       }
+      if (menuBtn) menuBtn.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
-    });
-    document.getElementById("mobile-menu-close")?.addEventListener("click", () => {
-      const menu = document.getElementById("mobile-menu");
+      menuClose?.focus();
+    }
+
+    function closeMenu() {
       if (menu) {
         menu.style.opacity = "0";
         menu.style.pointerEvents = "none";
         menu.style.visibility = "hidden";
       }
+      if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
+      menuBtn?.focus();
+    }
+
+    menuBtn?.addEventListener("click", openMenu);
+    menuClose?.addEventListener("click", closeMenu);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menu?.style.opacity === "1") closeMenu();
     });
   });
 </script>

@@ -23,14 +23,14 @@ const {
 <meta property="og:type" content="website" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={`${BASE_URL}${ogImageUrl}`} />
-<meta property="og:url" content={BASE_URL} />
+<meta property="og:image" content={`${BASE_URL}${ogImageUrl.replace(/^\//, "")}`} />
+<meta property="og:url" content={Astro.url.href} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={`${BASE_URL}${ogImageUrl}`} />
+<meta name="twitter:image" content={`${BASE_URL}${ogImageUrl.replace(/^\//, "")}`} />
 
 <!-- Favicons -->
 <link rel="icon" href="/favicon.ico" />
