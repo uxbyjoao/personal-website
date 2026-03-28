@@ -18,11 +18,13 @@ import { education } from "@data";
         <p class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)] mt-1">
           {entry.location}
         </p>
-        {entry.description.map((desc) => (
-          <p class="font-mono text-[13px] font-light text-[var(--text-secondary)] mt-3 leading-relaxed">
-            {desc}
-          </p>
-        ))}
+        <ul class="mt-3 flex flex-col gap-2">
+          {entry.description.map((desc) => (
+            <li class="font-mono text-[13px] font-light text-[var(--text-secondary)] leading-relaxed">
+              {desc}
+            </li>
+          ))}
+        </ul>
       </article>
     ))}
   </div>
