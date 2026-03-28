@@ -1,8 +1,9 @@
 @import "./fonts.css";
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@config "../../tailwind.config.cjs";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @layer base {
   /* Dark mode (default) */

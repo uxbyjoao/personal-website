@@ -23,7 +23,7 @@ const description = "João's blog about design, technology, music and life.";
     {
       blogPosts.map((post) => (
         <li>
-          <a href={`/blog/${post.slug}`} rel="prefetch">
+          <a href={`/blog/${post.id}`} rel="prefetch">
             <h2 class="underlined-link text-2xl font-medium">
               {post.data.title}
             </h2>
