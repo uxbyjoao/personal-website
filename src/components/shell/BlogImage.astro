@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 interface Props {
-  src: string;
+  src: string | import("astro").ImageMetadata;
   alt: string;
   caption?: string;
   width: number;
