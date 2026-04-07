@@ -2,34 +2,37 @@
 ---
 
 <section class="hero relative flex h-screen flex-col justify-end overflow-hidden pt-16">
-  <!-- Background: image placeholder + gradient overlay -->
+  <!-- Dithered background -->
   <div class="absolute inset-0 z-0">
-    <!-- Replace this div with your photo: <img src="..." alt="..." class="absolute inset-0 w-full h-full object-cover" /> -->
-    <div class="absolute inset-0 bg-[var(--bg)]"></div>
+    <canvas
+      id="dither-canvas"
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full"
+      style="image-rendering: pixelated; image-rendering: crisp-edges;"
+    ></canvas>
 
-    <!-- Decorative accent glow — adds atmosphere while you pick a photo -->
-    <div
-      class="absolute top-[15%] right-[10%] h-[50vh] w-[50vh] rounded-full opacity-[0.04]"
-      style="background: radial-gradient(circle, var(--accent) 0%, transparent 70%);"
-    ></div>
-    <div
-      class="absolute bottom-[30%] left-[5%] h-[30vh] w-[30vh] rounded-full opacity-[0.03]"
-      style="background: radial-gradient(circle, var(--accent) 0%, transparent 70%);"
-    ></div>
+    <!-- To use a real video source, uncomment and set the src: -->
+    <!-- <video id="dither-video" src="/video.mp4" muted autoplay loop playsinline preload="auto" crossorigin="anonymous" class="hidden" aria-hidden="true"></video> -->
 
-    <!-- Bottom fade — ensures text readability over any future image -->
-    <div class="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/90 to-transparent"></div>
+    <!-- Bottom fade for text readability -->
+    <div
+      class="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/85 to-transparent"
+    ></div>
   </div>
 
   <!-- Bottom content bar -->
-  <div class="hero-content relative z-10 px-6 pb-10 sm:px-10 md:px-16 lg:px-20 md:pb-14">
-    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-10 md:gap-16">
+  <div
+    class="hero-content relative z-10 px-6 pb-10 sm:px-10 md:px-16 lg:px-20 md:pb-14"
+  >
+    <div
+      class="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-10 md:gap-16"
+    >
       <!-- Left: headline block -->
       <div>
         <p
-          class="hero-label font-mono text-[11px] uppercase tracking-[3px] text-[var(--text-muted)] mb-5"
+          class="hero-label mb-5 font-mono text-[11px] uppercase tracking-[3px] text-[var(--text-muted)]"
         >
-          João Gomes — Berlin
+          Jo&atilde;o Gomes &mdash; Berlin
         </p>
         <h1
           class="hero-heading font-display text-[clamp(40px,7vw,84px)] font-extrabold leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)]"
@@ -39,7 +42,7 @@
           >
         </h1>
         <p
-          class="hero-sub mt-5 font-mono text-[13px] font-light leading-relaxed text-[var(--text-secondary)] max-w-[520px]"
+          class="hero-sub mt-5 max-w-[520px] font-mono text-[13px] font-light leading-relaxed text-[var(--text-secondary)]"
         >
           Design systems, e-commerce, and the space between design and code.
         </p>
@@ -47,18 +50,18 @@
 
       <!-- Right: CTA + scroll hint -->
       <div
-        class="flex flex-row md:flex-col items-start md:items-end gap-6 md:gap-8 md:pb-1"
+        class="flex flex-row items-start gap-6 md:flex-col md:items-end md:gap-8 md:pb-1"
       >
         <div class="flex items-center gap-3">
           <a
             href="/portfolio"
-            class="hero-cta font-display text-[11px] font-bold uppercase tracking-[2px] bg-[var(--accent)] text-[var(--accent-on)] px-5 py-2.5 rounded transition-colors duration-200 hover:bg-[var(--accent-hover)]"
+            class="hero-cta rounded bg-[var(--accent)] px-5 py-2.5 font-display text-[11px] font-bold uppercase tracking-[2px] text-[var(--accent-on)] transition-colors duration-200 hover:bg-[var(--accent-hover)]"
           >
             Explore Work
           </a>
           <a
             href="/experience"
-            class="hero-cta font-display text-[11px] font-bold uppercase tracking-[2px] text-[var(--text-primary)] border border-[var(--border)] px-5 py-2.5 rounded transition-colors duration-200 hover:border-[var(--text-muted)]"
+            class="hero-cta rounded border border-[var(--border)] px-5 py-2.5 font-display text-[11px] font-bold uppercase tracking-[2px] text-[var(--text-primary)] transition-colors duration-200 hover:border-[var(--text-muted)]"
           >
             Experience
           </a>
@@ -128,3 +131,29 @@
     scroll-behavior: smooth;
   }
 </style>
+
+<script>
+  import { initDitherBackground } from "../../scripts/dither-background";
+
+  let cleanup: (() => void) | undefined;
+
+  function boot() {
+    cleanup?.();
+    const canvas = document.getElementById(
+      "dither-canvas",
+    ) as HTMLCanvasElement | null;
+    if (!canvas) return;
+    const video = document.getElementById(
+      "dither-video",
+    ) as HTMLVideoElement | null;
+    cleanup = initDitherBackground(canvas, video ?? undefined);
+  }
+
+  // Run on initial load and after view transitions
+  boot();
+  document.addEventListener("astro:after-swap", boot);
+  document.addEventListener("astro:before-swap", () => {
+    cleanup?.();
+    cleanup = undefined;
+  });
+</script>
