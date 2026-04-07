@@ -17,6 +17,7 @@
   --color-primary: #ffffff;
   --color-secondary: #999999;
   --color-muted: #999999;
+  --color-muted-extra: #333333;
   --color-accent: #d4321d;
   --color-accent-active: #f14730;
   --color-accent-surface: rgba(255, 255, 255, 0.06);
@@ -110,6 +111,22 @@
 
   .fade-up {
     animation: fadeUp 0.4s ease-out both;
+  }
+
+  /* Timeline pulse for active nodes */
+  @keyframes timelinePulse {
+    0% { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+    100% { 
+      opacity: 0; 
+      transform: scale(2.5); 
+    }
+  }
+
+  .timeline-pulse {
+    animation: timelinePulse 1.5s ease-in-out infinite;
   }
 
   /* Shake animation for password error */

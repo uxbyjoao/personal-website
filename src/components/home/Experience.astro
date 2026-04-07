@@ -11,45 +11,77 @@ const entries = keyOnly ? experience.filter((e) => e.key) : experience;
 ---
 
 <section class="mx-auto max-w-3xl px-6 py-24">
-  <h2 class="font-display text-heading-lg font-extrabold text-primary mb-12">
+  <h2 class="font-display text-heading-lg font-extrabold text-primary mb-16">
     {keyOnly ? "Key Experience" : "Experience"}
   </h2>
-  <div class="flex flex-col gap-4">
-    {entries.map((entry) => (
-      <article data-reveal class="bg-surface border border-edge rounded-lg p-8 transition-all duration-200 hover:bg-surface-elevated hover:-translate-y-0.5">
-        <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <span class="font-mono text-label uppercase tracking-label text-muted">
-            {entry.startDate} — {entry.endDate}
-          </span>
-          <span class="font-mono text-label uppercase tracking-label text-muted">
-            {entry.location}
-          </span>
-        </div>
-        <h3 class="font-display text-heading-sm font-extrabold text-primary mt-3">
-          {entry.title}
-        </h3>
-        <p class="font-mono text-sm mt-1">
-          <span class="text-accent">{entry.company}</span>
-        </p>
-        <ul class="mt-4 flex flex-col gap-2">
-          {entry.description.map((desc) => (
-            <li class="font-mono text-detail font-light text-secondary leading-relaxed">
-              {desc}
-            </li>
-          ))}
-        </ul>
-        <SkillsList skills={entry.skills} />
-      </article>
-    ))}
-  </div>
-  {keyOnly && (
-    <div class="mt-8 text-center">
-      <a
-        href="/experience"
-        class="font-mono text-sm text-accent border-b border-accent pb-0.5 hover:text-accent-active transition-colors duration-200"
-      >
-        See full experience &rarr;
-      </a>
+
+  <div class="relative">
+    {/* Timeline spine */}
+    <div
+      class="absolute left-1 top-2 bottom-2 w-px"
+      style="background: linear-gradient(to bottom, var(--color-muted-extra), var(--color-muted-extra) 70%, transparent)"
+    >
     </div>
-  )}
+
+    <div class="flex flex-col gap-22">
+      {
+        entries.map((entry) => {
+          const isCurrent = entry.endDate === "Present";
+          return (
+            <article data-reveal class="relative pl-10 group">
+              {/* Timeline node */}
+              <div
+                class:list={[
+                  "absolute left-0 top-1.25 size-2.25 rounded-full transition-all duration-300",
+                  isCurrent
+                    ? "bg-accent ring-2 ring-canvas"
+                    : "bg-accent ring-2 border-2 border-canvas ring-canvas",
+                ]}
+              >
+                {isCurrent && (
+                  <span class="absolute bg-accent size-2.25 rounded-full timeline-pulse" />
+                )}
+              </div>
+
+              {/* Content */}
+              <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                <span class="font-mono text-label uppercase tracking-label text-accent">
+                  {entry.startDate} — {entry.endDate}
+                </span>
+              </div>
+              <h3 class="font-display text-heading-sm font-extrabold text-primary mt-3">
+                {entry.title}
+              </h3>
+              <p class="font-mono text-muted text-sm">
+                <span>{entry.company}</span>
+                <span>&middot;</span>
+                <span>{entry.location}</span>
+              </p>
+              <ul class="mt-8 mb-6 flex flex-col gap-2">
+                {entry.description.map((desc) => (
+                  <li class="font-mono text-detail font-light text-secondary leading-relaxed">
+                    {desc}
+                  </li>
+                ))}
+              </ul>
+              <SkillsList skills={entry.skills} />
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  {
+    keyOnly && (
+      <div class="mt-12 text-center">
+        <a
+          href="/experience"
+          class="font-mono text-sm text-accent border-b border-accent pb-0.5 hover:text-accent-active transition-colors duration-200"
+        >
+          See full experience &rarr;
+        </a>
+      </div>
+    )
+  }
 </section>
