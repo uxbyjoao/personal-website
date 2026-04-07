@@ -5,7 +5,7 @@
 
 <div
   id="lightbox"
-  class="fixed inset-0 z-50 hidden items-center justify-center bg-[var(--bg)]/90 backdrop-blur-sm cursor-zoom-out"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-canvas/90 backdrop-blur-xs cursor-zoom-out"
   role="dialog"
   aria-modal="true"
   aria-label="Enlarged image"
@@ -14,11 +14,11 @@
     id="lightbox-img"
     src=""
     alt=""
-    class="max-h-[90vh] max-w-[90vw] rounded-lg object-contain opacity-0 scale-95 transition-all duration-200"
+    class="max-h-lightbox max-w-lightbox rounded-lg object-contain opacity-0 scale-95 transition-all duration-200"
   />
   <button
     id="lightbox-close"
-    class="absolute top-6 right-6 font-mono text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors text-2xl leading-none"
+    class="absolute top-6 right-6 font-mono text-muted hover:text-primary transition-colors text-2xl leading-none"
     aria-label="Close lightbox"
   >
     &times;

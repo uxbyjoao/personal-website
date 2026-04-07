@@ -12,7 +12,7 @@ const imgSrc = typeof src === "string" ? src : src.src;
 <figure class="my-8">
   <img src={imgSrc} alt={alt} class="w-full rounded-lg" loading="lazy" />
   {caption && (
-    <figcaption class="mt-2 text-center font-mono text-xs text-[var(--text-muted)] italic">
+    <figcaption class="mt-2 text-center font-mono text-xs text-muted italic">
       {caption}
     </figcaption>
   )}

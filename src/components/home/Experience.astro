@@ -11,29 +11,29 @@ const entries = keyOnly ? experience.filter((e) => e.key) : experience;
 ---
 
 <section class="mx-auto max-w-3xl px-6 py-24">
-  <h2 class="font-display text-[48px] font-extrabold text-[var(--text-primary)] mb-12">
+  <h2 class="font-display text-heading-lg font-extrabold text-primary mb-12">
     {keyOnly ? "Key Experience" : "Experience"}
   </h2>
   <div class="flex flex-col gap-4">
     {entries.map((entry) => (
-      <article data-reveal class="bg-[var(--surface)] border border-[var(--border)] rounded-lg p-8 transition-all duration-200 hover:bg-[var(--surface-elevated)] hover:-translate-y-0.5">
+      <article data-reveal class="bg-surface border border-edge rounded-lg p-8 transition-all duration-200 hover:bg-surface-elevated hover:-translate-y-0.5">
         <div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-          <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
+          <span class="font-mono text-label uppercase tracking-label text-muted">
             {entry.startDate} — {entry.endDate}
           </span>
-          <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
+          <span class="font-mono text-label uppercase tracking-label text-muted">
             {entry.location}
           </span>
         </div>
-        <h3 class="font-display text-[32px] font-extrabold text-[var(--text-primary)] mt-3">
+        <h3 class="font-display text-heading-sm font-extrabold text-primary mt-3">
           {entry.title}
         </h3>
         <p class="font-mono text-sm mt-1">
-          <span class="text-[var(--accent)]">{entry.company}</span>
+          <span class="text-accent">{entry.company}</span>
         </p>
         <ul class="mt-4 flex flex-col gap-2">
           {entry.description.map((desc) => (
-            <li class="font-mono text-[13px] font-light text-[var(--text-secondary)] leading-relaxed">
+            <li class="font-mono text-detail font-light text-secondary leading-relaxed">
               {desc}
             </li>
           ))}
@@ -46,7 +46,7 @@ const entries = keyOnly ? experience.filter((e) => e.key) : experience;
     <div class="mt-8 text-center">
       <a
         href="/experience"
-        class="font-mono text-sm text-[var(--accent)] border-b border-[var(--accent)] pb-0.5 hover:text-[var(--accent-hover)] transition-colors duration-200"
+        class="font-mono text-sm text-accent border-b border-accent pb-0.5 hover:text-accent-active transition-colors duration-200"
       >
         See full experience &rarr;
       </a>

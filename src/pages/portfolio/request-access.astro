@@ -6,56 +6,56 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 <BaseLayout title="Request Portfolio Access — João Gomes">
   <section class="flex min-h-screen flex-col items-center justify-center px-6 pt-16">
     <div class="w-full max-w-md">
-      <h1 class="font-display text-[32px] font-extrabold text-[var(--text-primary)] text-center">
+      <h1 class="font-display text-heading-sm font-extrabold text-primary text-center">
         Request Portfolio Access
       </h1>
-      <p class="mt-3 font-mono text-[13px] font-light text-[var(--text-secondary)] text-center leading-relaxed">
+      <p class="mt-3 font-mono text-detail font-light text-secondary text-center leading-relaxed">
         Leave your details and I'll get back to you with the password.
       </p>
       <form id="request-form" class="mt-8 flex flex-col gap-4">
         <div>
-          <label for="name" class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)] mb-1.5 block">Name</label>
+          <label for="name" class="font-mono text-label uppercase tracking-label text-muted mb-1.5 block">Name</label>
           <input
             id="name"
             type="text"
             name="name"
             required
-            class="w-full bg-[var(--surface)] border border-[var(--border)] rounded px-4 py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors duration-200"
+            class="w-full bg-surface border border-edge rounded-sm px-4 py-3 font-mono text-sm text-primary placeholder:text-muted focus:outline-hidden focus:border-accent transition-colors duration-200"
           />
         </div>
         <div>
-          <label for="email" class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)] mb-1.5 block">Email</label>
+          <label for="email" class="font-mono text-label uppercase tracking-label text-muted mb-1.5 block">Email</label>
           <input
             id="email"
             type="email"
             name="email"
             required
-            class="w-full bg-[var(--surface)] border border-[var(--border)] rounded px-4 py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors duration-200"
+            class="w-full bg-surface border border-edge rounded-sm px-4 py-3 font-mono text-sm text-primary placeholder:text-muted focus:outline-hidden focus:border-accent transition-colors duration-200"
           />
         </div>
         <div>
-          <label for="message" class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)] mb-1.5 block">Message (optional)</label>
+          <label for="message" class="font-mono text-label uppercase tracking-label text-muted mb-1.5 block">Message (optional)</label>
           <textarea
             id="message"
             name="message"
             rows="3"
             placeholder="Brief note about why you'd like access"
-            class="w-full bg-[var(--surface)] border border-[var(--border)] rounded px-4 py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors duration-200 resize-none"
+            class="w-full bg-surface border border-edge rounded-sm px-4 py-3 font-mono text-sm text-primary placeholder:text-muted focus:outline-hidden focus:border-accent transition-colors duration-200 resize-none"
           ></textarea>
         </div>
         <button
           type="submit"
-          class="w-full font-display text-xs font-extrabold uppercase tracking-[2px] bg-[var(--accent)] text-[var(--accent-on)] py-3 rounded transition-colors duration-200 hover:bg-[var(--accent-hover)]"
+          class="w-full font-display text-xs font-extrabold uppercase tracking-label bg-accent text-accent-on py-3 rounded-sm transition-colors duration-200 hover:bg-accent-active"
         >
           Send Request
         </button>
       </form>
       <div id="success-msg" class="hidden text-center mt-8">
-        <p class="font-mono text-sm text-[var(--accent)]">Request sent.</p>
-        <p class="font-mono text-[13px] font-light text-[var(--text-secondary)] mt-2">I'll get back to you shortly.</p>
+        <p class="font-mono text-sm text-accent">Request sent.</p>
+        <p class="font-mono text-detail font-light text-secondary mt-2">I'll get back to you shortly.</p>
         <a
           href="/portfolio"
-          class="inline-block mt-6 font-mono text-xs text-[var(--text-muted)] border-b border-[var(--text-muted)] pb-0.5 hover:text-[var(--text-primary)] transition-colors duration-200"
+          class="inline-block mt-6 font-mono text-xs text-muted border-b border-muted pb-0.5 hover:text-primary transition-colors duration-200"
         >
           &larr; Back to portfolio
         </a>

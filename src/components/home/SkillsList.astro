@@ -8,7 +8,7 @@ const { skills } = Astro.props;
 
 <div class="flex flex-wrap gap-1.5 mt-4">
   {skills.map((skill) => (
-    <span class="font-mono text-[11px] text-[var(--text-secondary)] bg-[rgba(255,255,255,0.04)] border border-[var(--border)] px-3 py-1 rounded">
+    <span class="font-mono text-label text-secondary bg-edge-subtle border border-edge px-3 py-1 rounded-sm">
       {skill}
     </span>
   ))}

@@ -139,10 +139,9 @@ function lerpRgb(a: RGB, b: RGB, t: number): RGB {
 
 function readColors(): { fg: RGB; bg: RGB } {
   const s = getComputedStyle(document.documentElement);
-  const bg = hexToRgb(s.getPropertyValue("--bg").trim());
-  const accent = hexToRgb(s.getPropertyValue("--accent").trim());
-  const isDark = bg[0] + bg[1] + bg[2] < 1.5;
-  return { bg, fg: lerpRgb(bg, accent, isDark ? 0.25 : 0.12) };
+  const bg = hexToRgb(s.getPropertyValue("--color-canvas").trim());
+  const accent = hexToRgb(s.getPropertyValue("--color-accent").trim());
+  return { bg, fg: lerpRgb(bg, accent, 0.25) };
 }
 
 function compileShader(
@@ -288,13 +287,7 @@ export function initDitherBackground(
 
   let colors = readColors();
 
-  const mo = new MutationObserver(() => {
-    colors = readColors();
-  });
-  mo.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-theme"],
-  });
+  // Colors are static (no theme switching), so no observer needed.
 
   /* ---------- Mouse tracking ---------- */
 
@@ -368,7 +361,6 @@ export function initDitherBackground(
     destroyed = true;
     cancelAnimationFrame(raf);
     ro.disconnect();
-    mo.disconnect();
     window.removeEventListener("pointermove", onPointerMove);
     mq.removeEventListener("change", onMq);
     gl!.deleteProgram(prog);

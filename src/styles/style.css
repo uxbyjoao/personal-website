@@ -1,52 +1,89 @@
 @import "./fonts.css";
 @import "tailwindcss";
 
-@config "../../tailwind.config.cjs";
-
 @plugin "@tailwindcss/typography";
 
-@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+/* ═══════════════════════════════════════
+   Theme tokens
+   ═══════════════════════════════════════ */
+
+@theme {
+  /* Colors */
+  --color-canvas: #050505;
+  --color-surface: #0a0a0a;
+  --color-surface-elevated: #111111;
+  --color-edge: rgba(255, 255, 255, 0.06);
+  --color-edge-subtle: rgba(255, 255, 255, 0.04);
+  --color-primary: #ffffff;
+  --color-secondary: #999999;
+  --color-muted: #999999;
+  --color-accent: #d4321d;
+  --color-accent-active: #f14730;
+  --color-accent-surface: rgba(255, 255, 255, 0.06);
+  --color-accent-on: #ffffff;
+
+  /* Font families */
+  --font-display: "Outfit", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Font sizes */
+  --text-2xs: 10px;
+  --text-label: 11px;
+  --text-detail: 13px;
+  --text-body: 14px;
+  --text-heading-sm: 32px;
+  --text-heading-lg: 48px;
+  --text-hero: clamp(40px, 7vw, 84px);
+  --text-hero-sm: clamp(40px, 7vw, 72px);
+
+  /* Letter spacing */
+  --tracking-label-tight: 1.5px;
+  --tracking-label: 2px;
+  --tracking-label-wide: 3px;
+  --tracking-heading: -0.02em;
+
+  /* Line height */
+  --leading-hero: 1.02;
+  --leading-hero-loose: 1.05;
+
+  /* Max width / height */
+  --max-w-prose-narrow: 520px;
+  --max-w-lightbox: 90vw;
+  --max-h-lightbox: 90vh;
+
+  /* Opacity */
+  --opacity-noise: 0.035;
+
+  /* Z-index */
+  --z-menu: 60;
+}
+
+/* Custom utilities (no native @theme namespace) */
+
+@utility grid-cols-sidebar {
+  grid-template-columns: 280px 1fr;
+}
+
+@utility grid-cols-hero {
+  grid-template-columns: 1fr auto;
+}
+
+@utility transition-nav {
+  transition-property: background-color, border-color, backdrop-filter;
+}
+
+/* ═══════════════════════════════════════
+   Base styles
+   ═══════════════════════════════════════ */
 
 @layer base {
-  /* Dark mode (default) */
-  :root {
-    --bg: #050505;
-    --surface: #0a0a0a;
-    --surface-elevated: #111111;
-    --border: rgba(255, 255, 255, 0.06);
-    --border-subtle: rgba(255, 255, 255, 0.04);
-    --text-primary: #ffffff;
-    --text-secondary: #999999;
-    --text-muted: #999999;
-    --accent: #d4321d;
-    --accent-hover: #f14730;
-    --accent-surface: rgba(163, 230, 53, 0.08);
-    --accent-on: #ffffff;
-  }
-
-  /* Light mode */
-  [data-theme="light"] {
-    --bg: #fafafa;
-    --surface: #ffffff;
-    --surface-elevated: #f5f5f5;
-    --border: rgba(0, 0, 0, 0.08);
-    --border-subtle: rgba(0, 0, 0, 0.04);
-    --text-primary: #0a0a0a;
-    --text-secondary: #555555;
-    --text-muted: #999999;
-    --accent: #65a30d;
-    --accent-hover: #4d7c0f;
-    --accent-surface: rgba(101, 163, 13, 0.08);
-    --accent-on: #ffffff;
-  }
-
   html {
-    background-color: var(--bg);
-    color: var(--text-secondary);
+    background-color: var(--color-canvas);
+    color: var(--color-secondary);
   }
 
   body {
-    font-family: "JetBrains Mono", monospace;
+    font-family: var(--font-mono);
     font-weight: 300;
     font-size: 14px;
     line-height: 1.85;
@@ -55,8 +92,8 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Outfit", sans-serif;
-    color: var(--text-primary);
+    font-family: var(--font-display);
+    color: var(--color-primary);
   }
 
   /* Scroll reveal animation */
@@ -87,4 +124,48 @@
   .shake {
     animation: shake 0.3s ease-in-out;
   }
+}
+
+/* ═══════════════════════════════════════
+   Prose overrides (unlayered to beat plugin defaults)
+   ═══════════════════════════════════════ */
+
+.prose {
+  --tw-prose-body: var(--color-secondary);
+  --tw-prose-headings: var(--color-primary);
+  --tw-prose-bold: var(--color-primary);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-code: var(--color-primary);
+  --tw-prose-pre-bg: var(--color-surface);
+  --tw-prose-pre-code: var(--color-secondary);
+  --tw-prose-hr: var(--color-edge);
+  --tw-prose-quotes: var(--color-secondary);
+  --tw-prose-quote-borders: var(--color-accent);
+}
+
+.prose :is(h1, h2) {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+}
+
+.prose a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-accent);
+}
+
+.prose a:hover {
+  color: var(--color-accent-active);
+}
+
+.prose img {
+  border-radius: 8px;
 }

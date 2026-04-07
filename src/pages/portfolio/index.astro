@@ -30,7 +30,7 @@ const formatDate = (date: Date) =>
 <BaseLayout title="Portfolio — João Gomes">
   {isAuthenticated ? (
     <section class="mx-auto max-w-3xl px-6 pt-24 pb-24">
-      <h1 class="font-display text-[48px] font-extrabold text-[var(--text-primary)] mb-12">
+      <h1 class="font-display text-heading-lg font-extrabold text-primary mb-12">
         Portfolio
       </h1>
       <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -38,24 +38,24 @@ const formatDate = (date: Date) =>
           <a
             href={`/portfolio/${entry.id}`}
             data-reveal
-            class="group bg-[var(--surface)] border border-[var(--border)] rounded-lg p-6 transition-all duration-200 hover:bg-[var(--surface-elevated)] hover:-translate-y-0.5 block"
+            class="group bg-surface border border-edge rounded-lg p-6 transition-all duration-200 hover:bg-surface-elevated hover:-translate-y-0.5 block"
           >
-            <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
+            <span class="font-mono text-label uppercase tracking-label text-muted">
               {entry.data.client}
             </span>
-            <h3 class="font-display text-xl font-semibold text-[var(--text-primary)] mt-2 group-hover:text-[var(--accent)] transition-colors duration-200">
+            <h3 class="font-display text-xl font-semibold text-primary mt-2 group-hover:text-accent transition-colors duration-200">
               {entry.data.title}
             </h3>
-            <p class="font-mono text-[11px] uppercase tracking-[1.5px] text-[var(--text-muted)] mt-1">
+            <p class="font-mono text-label uppercase tracking-label-tight text-muted mt-1">
               {entry.data.role}
             </p>
-            <p class="font-mono text-[13px] font-light text-[var(--text-secondary)] mt-3 leading-relaxed line-clamp-2">
+            <p class="font-mono text-detail font-light text-secondary mt-3 leading-relaxed line-clamp-2">
               {entry.data.lead}
             </p>
             {entry.data.tags && (
               <div class="flex flex-wrap gap-1.5 mt-4">
                 {entry.data.tags.map((tag) => (
-                  <span class="font-mono text-[10px] text-[var(--text-muted)] bg-[rgba(255,255,255,0.04)] border border-[var(--border)] px-2 py-0.5 rounded">
+                  <span class="font-mono text-2xs text-muted bg-edge-subtle border border-edge px-2 py-0.5 rounded-sm">
                     {tag}
                   </span>
                 ))}
@@ -68,10 +68,10 @@ const formatDate = (date: Date) =>
   ) : (
     <section class="flex min-h-screen flex-col items-center justify-center px-6">
       <div class="w-full max-w-sm text-center">
-        <h1 class="font-display text-[48px] font-extrabold text-[var(--text-primary)]">
+        <h1 class="font-display text-heading-lg font-extrabold text-primary">
           Portfolio
         </h1>
-        <p class="mt-4 font-mono text-[13px] font-light text-[var(--text-secondary)] leading-relaxed">
+        <p class="mt-4 font-mono text-detail font-light text-secondary leading-relaxed">
           This portfolio is password-protected.<br />Enter the password to view my case studies.
         </p>
         <form id="login-form" class="mt-8 flex flex-col gap-3">
@@ -82,11 +82,11 @@ const formatDate = (date: Date) =>
             name="password"
             placeholder="Password"
             required
-            class="w-full bg-[var(--surface)] border border-[var(--border)] rounded px-4 py-3 font-mono text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors duration-200"
+            class="w-full bg-surface border border-edge rounded-sm px-4 py-3 font-mono text-sm text-primary placeholder:text-muted focus:outline-hidden focus:border-accent transition-colors duration-200"
           />
           <button
             type="submit"
-            class="w-full font-display text-xs font-extrabold uppercase tracking-[2px] bg-[var(--accent)] text-[var(--accent-on)] py-3 rounded transition-colors duration-200 hover:bg-[var(--accent-hover)]"
+            class="w-full font-display text-xs font-extrabold uppercase tracking-label bg-accent text-accent-on py-3 rounded-sm transition-colors duration-200 hover:bg-accent-active"
           >
             Enter
           </button>
@@ -94,9 +94,9 @@ const formatDate = (date: Date) =>
             Incorrect password
           </p>
         </form>
-        <p class="mt-8 font-mono text-xs text-[var(--text-muted)]">
+        <p class="mt-8 font-mono text-xs text-muted">
           Don't have the password?{" "}
-          <a href="/portfolio/request-access" class="text-[var(--accent)] border-b border-[var(--accent)] pb-0.5 hover:text-[var(--accent-hover)] transition-colors duration-200">
+          <a href="/portfolio/request-access" class="text-accent border-b border-accent pb-0.5 hover:text-accent-active transition-colors duration-200">
             Request access
           </a>
         </p>

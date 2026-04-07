@@ -14,10 +14,10 @@ const { src, alt, caption } = Astro.props;
     alt={alt}
     loading="lazy"
     data-lightbox
-    class="w-full rounded-lg border border-[var(--border)] cursor-zoom-in transition-opacity duration-200 hover:opacity-90"
+    class="w-full rounded-lg border border-edge cursor-zoom-in transition-opacity duration-200 hover:opacity-90"
   />
   {caption && (
-    <figcaption class="mt-2 font-mono text-[11px] text-[var(--text-muted)] tracking-wide">
+    <figcaption class="mt-2 font-mono text-label text-muted tracking-wide">
       {caption}
     </figcaption>
   )}

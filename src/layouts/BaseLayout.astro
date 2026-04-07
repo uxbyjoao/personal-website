@@ -20,15 +20,8 @@ const { title, description, ogImageUrl } = Astro.props;
   <head>
     <MetaHead title={title} description={description} ogImageUrl={ogImageUrl} />
     <ClientRouter />
-    <script is:inline>
-      // Apply theme immediately to prevent flash
-      (function() {
-        const theme = localStorage.getItem("theme") || "dark";
-        if (theme === "light") document.documentElement.setAttribute("data-theme", "light");
-      })();
-    </script>
   </head>
-  <body class="bg-[var(--bg)] text-[var(--text-secondary)]">
+  <body class="bg-canvas text-secondary">
     <Navbar />
     <main>
       <slot />

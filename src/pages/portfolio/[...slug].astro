@@ -24,10 +24,10 @@ const formatDate = (date: Date) =>
   {/* ════════════════════════════════════════════════
       HERO — Noise background + spotlight
       ════════════════════════════════════════════════ */}
-  <section class="hero-section relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
+  <section class="hero-section relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-32">
 
     {/* ── Noise texture ── */}
-    <div class="pointer-events-none absolute inset-0 z-0 opacity-[0.035]">
+    <div class="pointer-events-none absolute inset-0 z-0 opacity-noise">
       <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
         <filter id="noise">
           <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
@@ -40,37 +40,19 @@ const formatDate = (date: Date) =>
     <div class="pointer-events-none absolute inset-0 z-0 hero-spotlight"></div>
 
     {/* ── Bottom fade to page bg ── */}
-    <div class="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-32 bg-gradient-to-t from-[var(--bg)] to-transparent"></div>
-
-    {/* ── Back link ── */}
-    <a
-      href="/portfolio"
-      class="hero-reveal relative z-10 mb-12 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors duration-200"
-    >
-      <span>&larr;</span>
-      <span>Portfolio</span>
-    </a>
+    <div class="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-32 bg-linear-to-t from-canvas to-transparent"></div>
 
     {/* ── Content ── */}
     <div class="relative z-10 mx-auto max-w-3xl text-center">
-      <span class="hero-reveal hero-reveal-d1 inline-block font-mono text-[11px] uppercase tracking-[2px] text-[var(--accent)]">
+      <span class="hero-reveal hero-reveal-d1 inline-block font-mono text-label uppercase tracking-label text-accent">
         {entry.data.client}
       </span>
-      <h1 class="hero-reveal hero-reveal-d2 mt-4 font-display text-[clamp(40px,7vw,72px)] font-extrabold leading-[1.05] text-[var(--text-primary)]">
+      <h1 class="hero-reveal hero-reveal-d2 mt-4 font-display text-hero-sm font-extrabold leading-hero-loose text-primary">
         {entry.data.title}
       </h1>
-      <p class="hero-reveal hero-reveal-d3 mx-auto mt-6 max-w-xl font-mono text-[14px] font-light leading-relaxed text-[var(--text-secondary)]">
+      <p class="hero-reveal hero-reveal-d3 mx-auto mt-6 max-w-xl font-mono text-body font-light leading-relaxed text-secondary">
         {entry.data.lead}
       </p>
-      {entry.data.tags && (
-        <div class="hero-reveal hero-reveal-d4 mt-6 flex flex-wrap justify-center gap-1.5">
-          {entry.data.tags.map((tag) => (
-            <span class="font-mono text-[10px] text-[var(--text-secondary)] bg-[var(--accent-surface)] border border-[var(--border)] px-2.5 py-1 rounded">
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
     </div>
 
     {/* ── Hero image ── */}
@@ -82,7 +64,7 @@ const formatDate = (date: Date) =>
             alt={`${entry.data.title} — solution overview`}
             class="w-full object-cover object-top"
           />
-          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[var(--bg)] to-transparent"></div>
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-canvas to-transparent"></div>
         </div>
       </div>
     )}
@@ -94,28 +76,28 @@ const formatDate = (date: Date) =>
       CASE STUDY BODY
       ════════════════════════════════════════════════ */}
   <div class="mx-auto max-w-6xl px-6 pb-24">
-    <div class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-16">
+    <div class="lg:grid lg:grid-cols-sidebar lg:gap-16">
 
       {/* ── Sticky sidebar ── */}
       <aside data-aside class="aside-hidden mb-12 lg:mb-0 lg:sticky lg:top-24 lg:self-start">
-        <dl class="space-y-4 border-b border-[var(--border)] pb-6 mb-6">
+        <dl class="space-y-4 border-b border-edge pb-6 mb-6">
           <div>
-            <dt class="font-mono text-[10px] uppercase tracking-[2px] text-[var(--text-muted)]">Client</dt>
-            <dd class="font-mono text-[13px] text-[var(--text-primary)] mt-0.5">{entry.data.client}</dd>
+            <dt class="font-mono text-2xs uppercase tracking-label text-muted">Client</dt>
+            <dd class="font-mono text-detail text-primary mt-0.5">{entry.data.client}</dd>
           </div>
           <div>
-            <dt class="font-mono text-[10px] uppercase tracking-[2px] text-[var(--text-muted)]">Role</dt>
-            <dd class="font-mono text-[13px] text-[var(--text-primary)] mt-0.5">{entry.data.role}</dd>
+            <dt class="font-mono text-2xs uppercase tracking-label text-muted">Role</dt>
+            <dd class="font-mono text-detail text-primary mt-0.5">{entry.data.role}</dd>
           </div>
           <div>
-            <dt class="font-mono text-[10px] uppercase tracking-[2px] text-[var(--text-muted)]">Date</dt>
-            <dd class="font-mono text-[13px] text-[var(--text-primary)] mt-0.5">{formatDate(entry.data.datePublished)}</dd>
+            <dt class="font-mono text-2xs uppercase tracking-label text-muted">Date</dt>
+            <dd class="font-mono text-detail text-primary mt-0.5">{formatDate(entry.data.datePublished)}</dd>
           </div>
         </dl>
         {entry.data.tags && (
           <div class="flex flex-wrap gap-1.5">
             {entry.data.tags.map((tag) => (
-              <span class="font-mono text-[10px] text-[var(--text-secondary)] bg-[var(--accent-surface)] border border-[var(--border)] px-2.5 py-1 rounded">
+              <span class="font-mono text-2xs text-secondary bg-accent-surface border border-edge px-2.5 py-1 rounded-sm">
                 {tag}
               </span>
             ))}
@@ -141,14 +123,7 @@ const formatDate = (date: Date) =>
   .hero-spotlight {
     background: radial-gradient(
       ellipse 60% 50% at 50% 0%,
-      rgba(163, 230, 53, 0.06) 0%,
-      transparent 100%
-    );
-  }
-  :global([data-theme="light"]) .hero-spotlight {
-    background: radial-gradient(
-      ellipse 60% 50% at 50% 0%,
-      rgba(101, 163, 13, 0.07) 0%,
+      rgba(226, 226, 226, 0.06) 0%,
       transparent 100%
     );
   }
