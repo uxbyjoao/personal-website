@@ -1,0 +1,73 @@
+---
+// Global lightbox overlay — include once on the portfolio detail page.
+// Any <img data-lightbox> on the page becomes clickable.
+---
+
+<div
+  id="lightbox"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-[var(--bg)]/90 backdrop-blur-sm cursor-zoom-out"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Enlarged image"
+>
+  <img
+    id="lightbox-img"
+    src=""
+    alt=""
+    class="max-h-[90vh] max-w-[90vw] rounded-lg object-contain opacity-0 scale-95 transition-all duration-200"
+  />
+  <button
+    id="lightbox-close"
+    class="absolute top-6 right-6 font-mono text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors text-2xl leading-none"
+    aria-label="Close lightbox"
+  >
+    &times;
+  </button>
+</div>
+
+<script is:inline>
+  (() => {
+    const overlay = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img");
+    const closeBtn = document.getElementById("lightbox-close");
+    if (!overlay || !img || !closeBtn) return;
+
+    function open(src, alt) {
+      img.src = src;
+      img.alt = alt || "";
+      overlay.classList.remove("hidden");
+      overlay.classList.add("flex");
+      requestAnimationFrame(() => {
+        img.classList.remove("opacity-0", "scale-95");
+        img.classList.add("opacity-100", "scale-100");
+      });
+    }
+
+    function close() {
+      img.classList.remove("opacity-100", "scale-100");
+      img.classList.add("opacity-0", "scale-95");
+      setTimeout(() => {
+        overlay.classList.add("hidden");
+        overlay.classList.remove("flex");
+        img.src = "";
+      }, 200);
+    }
+
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest("[data-lightbox]");
+      if (target && target.tagName === "IMG") {
+        open(target.src, target.alt);
+      }
+    });
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay || e.target === closeBtn) close();
+    });
+
+    closeBtn.addEventListener("click", close);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !overlay.classList.contains("hidden")) close();
+    });
+  })();
+</script>

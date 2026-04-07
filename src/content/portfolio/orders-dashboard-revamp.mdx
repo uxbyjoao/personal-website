@@ -1,0 +1,81 @@
+---
+title: "Orders Dashboard Revamp"
+client: "Nivoda"
+role: "Senior UX Designer"
+datePublished: "2024-05-20"
+lead: "A multi-round research initiative to redesign the most-visited page on the buyer platform — simplifying order tracking, restructuring filters, and introducing self-serve capabilities."
+tags: ["UX Research", "Usability Testing", "Dashboard", "Information Architecture"]
+heroImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&q=80"
+heroImageMobile: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80&fit=crop&crop=top"
+draft: false
+---
+
+import ImageFull from '@components/portfolio/ImageFull.astro'
+import ImageGrid from '@components/portfolio/ImageGrid.astro'
+import ImageMasonry from '@components/portfolio/ImageMasonry.astro'
+
+## Overview
+
+The Orders Dashboard was the most-visited page on Nivoda's buyer platform, yet it generated persistent customer confusion. Buyers regularly contacted support asking *"Where is my diamond?"* and *"When will it arrive?"* — questions the dashboard should have answered without human intervention.
+
+I led the overall design direction across two rounds of moderated usability testing and an unmoderated validation study, collaborating with UX Research, Product, and Engineering.
+
+<ImageFull src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80" alt="Orders dashboard overview" caption="Placeholder — replace with actual dashboard screenshot" />
+
+## The Challenge
+
+The existing dashboard suffered from several core issues:
+
+- **9 ambiguous statuses** — Buyers couldn't distinguish between "in transit," "shipped," and "in customs," and would group them all under "shipped"
+- **Broken filters** — Overlapping options across "All" dropdown and "More Filters," with labels like "On its way" that didn't match user mental models
+- **Hidden tracking** — Many long-term customers didn't know the tracking feature existed
+- **Copy/export friction** — Buyers visited daily to copy certificate numbers and stone details for client invoices, but the mechanisms were unintuitive
+
+## Formative Research
+
+**Round 1 — Discovery (May 2024):** 15 moderated sessions (5 internal staff, 10 external buyers across US, UK, Canada, UAE) testing the existing dashboard. Sessions were live-streamed to stakeholders and produced 11 key findings — the most significant being that status indicators were the primary pain point, filters were rarely used, and many long-term customers didn't know the tracking feature existed.
+
+<ImageGrid images={[
+  { src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&q=80", alt: "Research session setup" },
+  { src: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&q=80", alt: "Observation notes on Miro" },
+]} caption="Placeholder — replace with research session artefacts" />
+
+## Hypothesis
+
+Simplifying status indicators, restructuring filters, and surfacing tracking and self-serve capabilities would measurably improve the post-checkout experience, tracked against:
+
+- **CS enquiry volume** — Reducing support contacts related to order status and delivery tracking
+- **Dashboard engagement** — Increasing frequency and depth of engagement with the orders dashboard
+- **User satisfaction** — Improving CSAT/NPS scores for the post-checkout experience
+
+## Proposed Solution
+
+Working with Ioli Xanthaki on hi-fi execution, the redesign addressed the research findings:
+
+- **Simplified status model** — Consolidated 9 statuses into a clearer set with intuitive labels and visual tracking indicators
+- **Restructured filters** — Replaced overlapping dropdown/filter system with a unified data grid pattern, consistent with the recently-launched Finance Dashboard
+- **Self-serve capabilities** — Return initiation, order cancellation, and delivery address changes directly on-platform, reducing support dependency
+- **Improved copy/export** — Copiable fields on the listing view and a clearer export workflow with date-range-first interaction pattern
+- **Accessibility improvements** — Addressed font size and colour contrast issues flagged by older participants during validation
+
+<ImageMasonry images={[
+  { src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80", alt: "Dashboard list view" },
+  { src: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=500&q=80", alt: "Order detail view" },
+  { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&q=80", alt: "Filter panel redesign" },
+  { src: "https://images.unsplash.com/photo-1558655146-d09347e92766?w=500&q=80", alt: "Status indicator system" },
+  { src: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&q=80", alt: "Self-serve returns flow" },
+]} />
+
+## Validation
+
+**Round 2 — Moderated testing (Sep–Oct 2024):** 11 Research Partners tested the new Figma prototype designs. The overall response was positive — the new designs were reported as easy to navigate. Four specific issues were surfaced: copy button discoverability, export flow expectations (users expected date-range-first), accessibility concerns for older users, and fear of accidental CTA activation on the list view.
+
+**Unmoderated testing (Feb 2025):** 6 users completed 6 tasks on interactive prototypes via Useberry. No severe usability issues found — all tasks completed without drop-outs within reasonable time.
+
+## Implementation
+
+The new dashboard was built as a standalone micro frontend within the G2 Platform using the Clarity Design System. I led design QA alongside Maria Machado. The implementation scope expanded to include jewelry order support alongside existing order types. As of early 2026, the dashboard has been deployed to QA environments and is undergoing final testing ahead of production launch.
+
+## Results
+
+Production launch is pending. KPIs defined in the hypothesis (CS enquiry reduction, dashboard engagement, user satisfaction) will be measured post-launch.

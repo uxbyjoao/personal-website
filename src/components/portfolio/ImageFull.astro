@@ -1,0 +1,24 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="my-10 not-prose">
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    data-lightbox
+    class="w-full rounded-lg border border-[var(--border)] cursor-zoom-in transition-opacity duration-200 hover:opacity-90"
+  />
+  {caption && (
+    <figcaption class="mt-2 font-mono text-[11px] text-[var(--text-muted)] tracking-wide">
+      {caption}
+    </figcaption>
+  )}
+</figure>

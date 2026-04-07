@@ -32,6 +32,8 @@ const portfolioCollection = defineCollection({
     datePublished: z.string().transform((date) => new Date(date)),
     lead: z.string(),
     thumbnail: z.string().optional(),
+    heroImage: z.string().optional(),
+    heroImageMobile: z.string().optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean(),
   }),

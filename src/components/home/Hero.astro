@@ -1,31 +1,130 @@
 ---
 ---
 
-<section class="relative flex min-h-screen flex-col items-center justify-center px-6 text-center">
-  <p class="font-mono text-[11px] uppercase tracking-[3px] text-[var(--text-muted)] mb-6">
-    João Gomes — Berlin
-  </p>
-  <h1 class="font-display text-[clamp(42px,6vw,76px)] font-extrabold leading-[1.05] tracking-tight text-[var(--text-primary)]">
-    Senior UX Designer<br />crafting <span class="text-[var(--accent)]">digital clarity</span>
-  </h1>
-  <p class="mt-5 font-mono text-[13px] font-light text-[var(--text-muted)] max-w-[480px] leading-relaxed">
-    Design systems, e-commerce, and the space between design and code.
-  </p>
-  <div class="mt-9 flex items-center gap-4">
-    <a
-      href="/portfolio"
-      class="font-display text-xs font-extrabold uppercase tracking-[2px] bg-[var(--accent)] text-[var(--accent-on)] px-6 py-2.5 rounded transition-colors duration-200 hover:bg-[var(--accent-hover)]"
-    >
-      Explore Work
-    </a>
-    <a
-      href="/experience"
-      class="font-display text-xs font-extrabold uppercase tracking-[2px] text-[var(--text-primary)] border border-[rgba(255,255,255,0.15)] px-6 py-2.5 rounded transition-colors duration-200 hover:border-[var(--text-muted)]"
-    >
-      Experience
-    </a>
+<section class="hero relative flex h-screen flex-col justify-end overflow-hidden pt-16">
+  <!-- Background: image placeholder + gradient overlay -->
+  <div class="absolute inset-0 z-0">
+    <!-- Replace this div with your photo: <img src="..." alt="..." class="absolute inset-0 w-full h-full object-cover" /> -->
+    <div class="absolute inset-0 bg-[var(--bg)]"></div>
+
+    <!-- Decorative accent glow — adds atmosphere while you pick a photo -->
+    <div
+      class="absolute top-[15%] right-[10%] h-[50vh] w-[50vh] rounded-full opacity-[0.04]"
+      style="background: radial-gradient(circle, var(--accent) 0%, transparent 70%);"
+    ></div>
+    <div
+      class="absolute bottom-[30%] left-[5%] h-[30vh] w-[30vh] rounded-full opacity-[0.03]"
+      style="background: radial-gradient(circle, var(--accent) 0%, transparent 70%);"
+    ></div>
+
+    <!-- Bottom fade — ensures text readability over any future image -->
+    <div class="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/90 to-transparent"></div>
   </div>
-  <p class="absolute bottom-8 left-0 right-0 text-center font-mono text-[11px] text-[var(--text-muted)]">
-    Scroll to explore &darr;
-  </p>
+
+  <!-- Bottom content bar -->
+  <div class="hero-content relative z-10 px-6 pb-10 sm:px-10 md:px-16 lg:px-20 md:pb-14">
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-10 md:gap-16">
+      <!-- Left: headline block -->
+      <div>
+        <p
+          class="hero-label font-mono text-[11px] uppercase tracking-[3px] text-[var(--text-muted)] mb-5"
+        >
+          João Gomes — Berlin
+        </p>
+        <h1
+          class="hero-heading font-display text-[clamp(40px,7vw,84px)] font-extrabold leading-[1.02] tracking-[-0.02em] text-[var(--text-primary)]"
+        >
+          Senior UX Designer<br />crafting <span class="text-[var(--accent)]"
+            >digital clarity</span
+          >
+        </h1>
+        <p
+          class="hero-sub mt-5 font-mono text-[13px] font-light leading-relaxed text-[var(--text-secondary)] max-w-[520px]"
+        >
+          Design systems, e-commerce, and the space between design and code.
+        </p>
+      </div>
+
+      <!-- Right: CTA + scroll hint -->
+      <div
+        class="flex flex-row md:flex-col items-start md:items-end gap-6 md:gap-8 md:pb-1"
+      >
+        <div class="flex items-center gap-3">
+          <a
+            href="/portfolio"
+            class="hero-cta font-display text-[11px] font-bold uppercase tracking-[2px] bg-[var(--accent)] text-[var(--accent-on)] px-5 py-2.5 rounded transition-colors duration-200 hover:bg-[var(--accent-hover)]"
+          >
+            Explore Work
+          </a>
+          <a
+            href="/experience"
+            class="hero-cta font-display text-[11px] font-bold uppercase tracking-[2px] text-[var(--text-primary)] border border-[var(--border)] px-5 py-2.5 rounded transition-colors duration-200 hover:border-[var(--text-muted)]"
+          >
+            Experience
+          </a>
+        </div>
+        <a
+          href="#after-hero"
+          class="hero-scroll group flex items-center gap-2 font-mono text-[11px] text-[var(--text-muted)] transition-colors duration-200 hover:text-[var(--text-secondary)]"
+        >
+          <span>Scroll to explore</span>
+          <svg
+            class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-y-0.5"
+            viewBox="0 0 14 14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 1v12M1 7l6 6 6-6"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
+
+<!-- Anchor for scroll-to -->
+<div id="after-hero"></div>
+
+<style>
+  /* Staggered entrance animations */
+  .hero-label,
+  .hero-heading,
+  .hero-sub,
+  .hero-cta,
+  .hero-scroll {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-label {
+    animation-delay: 0.15s;
+  }
+  .hero-heading {
+    animation-delay: 0.3s;
+  }
+  .hero-sub {
+    animation-delay: 0.45s;
+  }
+  .hero-cta {
+    animation-delay: 0.6s;
+  }
+  .hero-scroll {
+    animation-delay: 0.75s;
+  }
+
+  @keyframes heroReveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Smooth scroll for anchor link */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

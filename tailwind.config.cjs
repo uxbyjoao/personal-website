@@ -25,6 +25,7 @@ module.exports = {
           css: {
             "--tw-prose-body": "var(--text-secondary)",
             "--tw-prose-headings": "var(--text-primary)",
+            "--tw-prose-bold": "var(--text-primary)",
             "--tw-prose-links": "var(--accent)",
             "--tw-prose-code": "var(--text-primary)",
             "--tw-prose-pre-bg": "var(--surface)",

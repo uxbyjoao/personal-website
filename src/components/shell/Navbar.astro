@@ -7,13 +7,12 @@ function isActive(href: string): boolean {
 }
 
 const navLinks = [
-  { href: "/", label: "Work" },
+  { href: "/", label: "Home" },
   { href: "/experience", label: "Experience" },
-  { href: "/blog", label: "Blog" },
 ];
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 border-b border-b-[var(--border-subtle)]" style="background: color-mix(in srgb, var(--bg) 80%, transparent); backdrop-filter: blur(20px);">
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300" style="background: transparent; border-bottom: 1px solid transparent; backdrop-filter: blur(0px);">
   <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
     <!-- Logo -->
     <a href="/" class="font-display text-base font-extrabold text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors duration-200">
@@ -113,9 +112,41 @@ const navLinks = [
   }
   applyTheme(getTheme());
 
-  document.addEventListener("DOMContentLoaded", () => {
+  // Navbar scroll effect
+  function initNavScroll() {
+    // Tear down previous listener
+    if (window.__navScrollHandler) {
+      window.removeEventListener("scroll", window.__navScrollHandler);
+      window.__navScrollHandler = null;
+    }
+    var nav = document.getElementById("main-nav");
+    if (!nav) return;
+    var scrolled = null; // null forces first run
+    function updateNav() {
+      var shouldShow = window.scrollY > 10;
+      if (shouldShow === scrolled) return;
+      scrolled = shouldShow;
+      if (shouldShow) {
+        nav.style.background = "color-mix(in srgb, var(--bg) 80%, transparent)";
+        nav.style.borderBottomColor = "var(--border-subtle)";
+        nav.style.backdropFilter = "blur(20px)";
+      } else {
+        nav.style.background = "transparent";
+        nav.style.borderBottomColor = "transparent";
+        nav.style.backdropFilter = "blur(0px)";
+      }
+    }
+    window.__navScrollHandler = updateNav;
+    window.addEventListener("scroll", updateNav, { passive: true });
+    updateNav();
+  }
+  initNavScroll();
+
+  document.addEventListener("astro:page-load", function() {
+    initNavScroll();
+
     function toggleTheme() {
-      const next = getTheme() === "dark" ? "light" : "dark";
+      var next = getTheme() === "dark" ? "light" : "dark";
       localStorage.setItem("theme", next);
       applyTheme(next);
     }
@@ -123,9 +154,9 @@ const navLinks = [
     document.getElementById("mobile-theme-toggle")?.addEventListener("click", toggleTheme);
 
     // Mobile menu
-    const menuBtn = document.getElementById("mobile-menu-btn");
-    const menuClose = document.getElementById("mobile-menu-close");
-    const menu = document.getElementById("mobile-menu");
+    var menuBtn = document.getElementById("mobile-menu-btn");
+    var menuClose = document.getElementById("mobile-menu-close");
+    var menu = document.getElementById("mobile-menu");
 
     function openMenu() {
       if (menu) {
@@ -152,7 +183,7 @@ const navLinks = [
     menuBtn?.addEventListener("click", openMenu);
     menuClose?.addEventListener("click", closeMenu);
 
-    document.addEventListener("keydown", (e) => {
+    document.addEventListener("keydown", function(e) {
       if (e.key === "Escape" && menu?.style.opacity === "1") closeMenu();
     });
   });

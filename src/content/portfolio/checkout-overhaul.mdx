@@ -1,0 +1,91 @@
+---
+title: "Checkout Overhaul"
+client: "Nivoda"
+role: "Senior UX Designer"
+datePublished: "2024-04-09"
+lead: "A research-driven redesign of the web checkout that raised CSAT from 82 to 90, eliminating the most common sources of buyer confusion in a B2B diamond marketplace."
+tags: ["UX Research", "Usability Testing", "E-Commerce", "Checkout"]
+heroImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1400&q=80"
+heroImageMobile: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80&fit=crop&crop=top"
+draft: false
+---
+
+import ImageFull from '@components/portfolio/ImageFull.astro'
+import ImageGrid from '@components/portfolio/ImageGrid.astro'
+import ImageMasonry from '@components/portfolio/ImageMasonry.astro'
+
+## Overview
+
+Nivoda is a global B2B marketplace for diamonds. Throughout 2023, customer feedback channels revealed a pattern of severe usability issues in the web checkout — confused payment terms, unexplained disabled checkouts, and poor post-order communication were driving support tickets and lost sales.
+
+I led the design work across the full human-centred design cycle: heuristic evaluation, usability testing, solution design, and validation — collaborating closely with Product, Research, and Engineering.
+
+<ImageFull src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80" alt="Checkout flow overview" caption="Placeholder — replace with actual checkout redesign screenshot" />
+
+## The Challenge
+
+Checkout CSAT averaged **82** over a rolling 12-month period. Customers were:
+
+- Unknowingly breaching credit limits, causing orders to default to unintended payment terms
+- Encountering disabled checkouts with no explanation — told only to "contact support"
+- Missing that Upfront Pay required payment before order confirmation, leading to 24-hour timeouts and sold-out stock
+- Unable to orient themselves in the checkout flow due to a broken step indicator
+
+## Formative Research
+
+**Heuristic evaluation** — Workshops analysing the existing flow against Nielsen's 10 heuristics surfaced violations in system status visibility, consistency, minimalist design, and real-world language match.
+
+**Usability testing** — 11 real buyers walked through the checkout in moderated think-aloud sessions, directly surfacing the problems that shaped the redesign.
+
+**Benchmarking** — Desk research using the Baymard Institute and Mobbin established industry best practices for pricing display, step indicators, and information hierarchy.
+
+These activities converged into **10 prioritised problem statements**, each with evidence, proposed solutions, expected impact, and effort estimates.
+
+<ImageGrid images={[
+  { src: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&q=80", alt: "Heuristic evaluation workshop" },
+  { src: "https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&q=80", alt: "Usability testing session" },
+]} caption="Placeholder — replace with research artefact screenshots" />
+
+## Hypothesis
+
+Addressing the 10 problem statements would measurably improve the checkout experience, tracked against:
+
+- **CSAT** — Baseline 12-month rolling average of **82**; target: meaningful uplift
+- **Support ticket volume** — Reducing avoidable contacts caused by unexplained disabled checkouts and unintended payment term defaults
+- **Sold-out rate** — Reducing order timeouts from customers who didn't realise Upfront Pay required payment before confirmation
+
+## Proposed Solution
+
+I designed a high-fidelity Figma prototype addressing all 10 problem statements:
+
+- **Payment terms screen** — Clear credit availability messaging and explanation of each payment option
+- **Fail-state messaging** — Specific, actionable messages for missing KYC, low credit, and overdue invoices instead of generic "contact support"
+- **Cart review** — Support for Express, returns, Canada Mark, notes, and stone dimensions
+- **Delivery selection** — Explicit single vs. multiple address options
+- **Order confirmation** — Clear next-step communication and calls-to-action
+- **Step indicator** — Fixed progress indicator so users always know where they are
+
+<ImageGrid images={[
+  { src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80", alt: "Payment terms screen" },
+  { src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", alt: "Cart review redesign" },
+  { src: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&q=80", alt: "Order confirmation page" },
+  { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80", alt: "Fail-state messaging" },
+]} caption="Placeholder — replace with Figma prototype screens" />
+
+## Validation
+
+The design was validated through cross-functional review with Product, Finance, and Engineering — including detailed feedback from Finance on payment term logic and credit card flows. During final QA, cross-category compatibility testing caught that the new design needed adjustments for Melee (small diamond) orders, which was resolved with a brief design iteration before launch.
+
+## Implementation
+
+Design was handed off in February 2024. Frontend development was led by a dedicated engineer with QA following a DevBranch regression process. The launch was briefly delayed to accommodate melee compatibility fixes and a final round of regression testing. Released to production on **9 April 2024**.
+
+## Results
+
+In the first full month post-launch:
+
+- **CSAT rose to 90** — an 8-point improvement over the 12-month average of **82**, crossing from "Good" into "Excellent" on the benchmark scale
+- **Support ticket drivers shifted** — Post-launch negative feedback was about external factors (sold-out stones, supplier delivery times) rather than checkout usability, confirming the core UX problems were resolved
+- **Negative-to-positive ratio**: 13 negative vs. 312 positive responses (4% negative rate)
+
+The overhaul also unblocked downstream initiatives including Memo checkout flows, mobile checkout planning, and the Pay at Checkout initiative.

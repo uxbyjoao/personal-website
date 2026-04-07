@@ -1,0 +1,37 @@
+---
+interface ImageItem {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  images: ImageItem[];
+  cols?: 2 | 3;
+  caption?: string;
+}
+
+const { images, cols = 2, caption } = Astro.props;
+
+const gridClass = cols === 3
+  ? "grid-cols-1 sm:grid-cols-3"
+  : "grid-cols-1 sm:grid-cols-2";
+---
+
+<figure class="my-10 not-prose">
+  <div class={`grid ${gridClass} gap-3`}>
+    {images.map((img) => (
+      <img
+        src={img.src}
+        alt={img.alt}
+        loading="lazy"
+        data-lightbox
+        class="w-full rounded-lg border border-[var(--border)] cursor-zoom-in transition-opacity duration-200 hover:opacity-90 aspect-[4/3] object-cover"
+      />
+    ))}
+  </div>
+  {caption && (
+    <figcaption class="mt-2 font-mono text-[11px] text-[var(--text-muted)] tracking-wide">
+      {caption}
+    </figcaption>
+  )}
+</figure>

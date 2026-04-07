@@ -1,10 +1,11 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import Lightbox from "@components/portfolio/Lightbox.astro";
 
 export const prerender = false;
 
-const slug = Astro.params.slug; // [...slug] gives string | undefined
+const slug = Astro.params.slug;
 const entries = await getCollection("portfolio");
 const entry = entries.find((e) => e.id === slug);
 
@@ -19,42 +20,192 @@ const formatDate = (date: Date) =>
 ---
 
 <BaseLayout title={`${entry.data.title} — João Gomes`} description={entry.data.lead}>
-  <article class="mx-auto max-w-[720px] px-6 pt-24 pb-24">
-    <header class="mb-12">
-      <span class="font-mono text-[11px] uppercase tracking-[2px] text-[var(--accent)]">
+
+  {/* ════════════════════════════════════════════════
+      HERO — Noise background + spotlight
+      ════════════════════════════════════════════════ */}
+  <section class="hero-section relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
+
+    {/* ── Noise texture ── */}
+    <div class="pointer-events-none absolute inset-0 z-0 opacity-[0.035]">
+      <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg">
+        <filter id="noise">
+          <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#noise)" />
+      </svg>
+    </div>
+
+    {/* ── Radial spotlight ── */}
+    <div class="pointer-events-none absolute inset-0 z-0 hero-spotlight"></div>
+
+    {/* ── Bottom fade to page bg ── */}
+    <div class="pointer-events-none absolute bottom-0 left-0 right-0 z-0 h-32 bg-gradient-to-t from-[var(--bg)] to-transparent"></div>
+
+    {/* ── Back link ── */}
+    <a
+      href="/portfolio"
+      class="hero-reveal relative z-10 mb-12 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)] hover:text-[var(--accent)] transition-colors duration-200"
+    >
+      <span>&larr;</span>
+      <span>Portfolio</span>
+    </a>
+
+    {/* ── Content ── */}
+    <div class="relative z-10 mx-auto max-w-3xl text-center">
+      <span class="hero-reveal hero-reveal-d1 inline-block font-mono text-[11px] uppercase tracking-[2px] text-[var(--accent)]">
         {entry.data.client}
       </span>
-      <h1 class="font-display text-[48px] font-extrabold text-[var(--text-primary)] leading-tight mt-2">
+      <h1 class="hero-reveal hero-reveal-d2 mt-4 font-display text-[clamp(40px,7vw,72px)] font-extrabold leading-[1.05] text-[var(--text-primary)]">
         {entry.data.title}
       </h1>
-      <div class="mt-3 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[2px] text-[var(--text-muted)]">
-        <span>{entry.data.role}</span>
-        <span class="text-[var(--border)]">/</span>
-        <span>{formatDate(entry.data.datePublished)}</span>
-      </div>
-      <p class="mt-4 font-mono text-base font-light text-[var(--text-secondary)] leading-relaxed">
+      <p class="hero-reveal hero-reveal-d3 mx-auto mt-6 max-w-xl font-mono text-[14px] font-light leading-relaxed text-[var(--text-secondary)]">
         {entry.data.lead}
       </p>
       {entry.data.tags && (
-        <div class="flex flex-wrap gap-1.5 mt-4">
+        <div class="hero-reveal hero-reveal-d4 mt-6 flex flex-wrap justify-center gap-1.5">
           {entry.data.tags.map((tag) => (
-            <span class="font-mono text-[11px] text-[var(--text-secondary)] bg-[rgba(255,255,255,0.04)] border border-[var(--border)] px-3 py-1 rounded">
+            <span class="font-mono text-[10px] text-[var(--text-secondary)] bg-[var(--accent-surface)] border border-[var(--border)] px-2.5 py-1 rounded">
               {tag}
             </span>
           ))}
         </div>
       )}
-    </header>
-    <div class="prose prose-lg max-w-none">
-      <Content />
     </div>
-    <div class="mt-12 pt-8 border-t border-[var(--border-subtle)]">
-      <a
-        href="/portfolio"
-        class="font-mono text-sm text-[var(--accent)] border-b border-[var(--accent)] pb-0.5 hover:text-[var(--accent-hover)] transition-colors duration-200"
-      >
-        &larr; Back to portfolio
-      </a>
+
+    {/* ── Hero image ── */}
+    {entry.data.heroImage && (
+      <div class="hero-reveal hero-reveal-d5 relative z-10 mx-auto mt-14 w-full max-w-5xl">
+        <div class="relative overflow-hidden rounded-t-xl">
+          <img
+            src={entry.data.heroImage}
+            alt={`${entry.data.title} — solution overview`}
+            class="w-full object-cover object-top"
+          />
+          <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[var(--bg)] to-transparent"></div>
+        </div>
+      </div>
+    )}
+
+  </section>
+
+
+  {/* ════════════════════════════════════════════════
+      CASE STUDY BODY
+      ════════════════════════════════════════════════ */}
+  <div class="mx-auto max-w-6xl px-6 pb-24">
+    <div class="lg:grid lg:grid-cols-[280px_1fr] lg:gap-16">
+
+      {/* ── Sticky sidebar ── */}
+      <aside data-aside class="aside-hidden mb-12 lg:mb-0 lg:sticky lg:top-24 lg:self-start">
+        <dl class="space-y-4 border-b border-[var(--border)] pb-6 mb-6">
+          <div>
+            <dt class="font-mono text-[10px] uppercase tracking-[2px] text-[var(--text-muted)]">Client</dt>
+            <dd class="font-mono text-[13px] text-[var(--text-primary)] mt-0.5">{entry.data.client}</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[10px] uppercase tracking-[2px] text-[var(--text-muted)]">Role</dt>
+            <dd class="font-mono text-[13px] text-[var(--text-primary)] mt-0.5">{entry.data.role}</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[10px] uppercase tracking-[2px] text-[var(--text-muted)]">Date</dt>
+            <dd class="font-mono text-[13px] text-[var(--text-primary)] mt-0.5">{formatDate(entry.data.datePublished)}</dd>
+          </div>
+        </dl>
+        {entry.data.tags && (
+          <div class="flex flex-wrap gap-1.5">
+            {entry.data.tags.map((tag) => (
+              <span class="font-mono text-[10px] text-[var(--text-secondary)] bg-[var(--accent-surface)] border border-[var(--border)] px-2.5 py-1 rounded">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </aside>
+
+      {/* ── Main content ── */}
+      <article class="min-w-0">
+        <div class="prose prose-lg max-w-none">
+          <Content />
+        </div>
+      </article>
+
     </div>
-  </article>
+  </div>
+
+  <Lightbox />
 </BaseLayout>
+
+<style>
+  /* ── Radial spotlight ── */
+  .hero-spotlight {
+    background: radial-gradient(
+      ellipse 60% 50% at 50% 0%,
+      rgba(163, 230, 53, 0.06) 0%,
+      transparent 100%
+    );
+  }
+  :global([data-theme="light"]) .hero-spotlight {
+    background: radial-gradient(
+      ellipse 60% 50% at 50% 0%,
+      rgba(101, 163, 13, 0.07) 0%,
+      transparent 100%
+    );
+  }
+
+  /* ── Hero staggered reveal ── */
+  .hero-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: heroFadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+  .hero-reveal-d1 { animation-delay: 0.1s; }
+  .hero-reveal-d2 { animation-delay: 0.2s; }
+  .hero-reveal-d3 { animation-delay: 0.3s; }
+  .hero-reveal-d4 { animation-delay: 0.4s; }
+  .hero-reveal-d5 { animation-delay: 0.6s; }
+
+  @keyframes heroFadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Scroll hint pulse ── */
+  .scroll-hint {
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.15; transform: scaleY(1); }
+    50% { opacity: 0.5; transform: scaleY(1.3); }
+  }
+
+  /* ── Aside fade-in ── */
+  .aside-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .aside-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Reduce motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reveal { animation-duration: 0.01s !important; }
+    .scroll-hint { animation: none !important; }
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener("astro:page-load", function() {
+    var aside = document.querySelector("[data-aside]");
+    if (!aside) return;
+    aside.classList.remove("aside-visible");
+    var obs = new IntersectionObserver(
+      function(entries) { if (entries[0].isIntersecting) { aside.classList.add("aside-visible"); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(aside);
+  });
+</script>

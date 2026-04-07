@@ -26,4 +26,7 @@ pnpm-debug.log*
 .vercel
 
 # Superpowers
-.superpowers/
+.superpowers
+
+# Conductor
+.conductor

@@ -1,7 +1,9 @@
 @import "./fonts.css";
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
+
 @config "../../tailwind.config.cjs";
+
+@plugin "@tailwindcss/typography";
 
 @variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
@@ -15,11 +17,11 @@
     --border-subtle: rgba(255, 255, 255, 0.04);
     --text-primary: #ffffff;
     --text-secondary: #999999;
-    --text-muted: #555555;
-    --accent: #a3e635;
-    --accent-hover: #bef264;
+    --text-muted: #999999;
+    --accent: #d4321d;
+    --accent-hover: #f14730;
     --accent-surface: rgba(163, 230, 53, 0.08);
-    --accent-on: #050505;
+    --accent-on: #ffffff;
   }
 
   /* Light mode */
